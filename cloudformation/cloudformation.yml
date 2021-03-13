@@ -20,6 +20,6 @@ Resources:
 Outputs:
   RoleArn:
     Description: The role used to deploy all other CloudFormation
-    Value: !GetAtt CloudFormationDeplouerRole.Arn
+    Value: !GetAtt CloudFormationDeployerRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"

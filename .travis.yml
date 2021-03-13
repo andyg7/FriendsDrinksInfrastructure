@@ -14,7 +14,7 @@ jobs:
           secret_access_key:
             secure: "LL8f0Ak8LCr+Pes++oRFxur/kDa+q7V+/73ZkwSpt9L+mNCCdC5GOGkCECeUp30viDhmFnzaeHo4UUxeU+PNC8fvqCMVbzvpk7nS55uoSVxPOYY3OXUd1+H726Gi043/5JcLwCIVYkyQ1BsRuuQmz/i1oblHwaXUl15uUxgv7UIOc2313d4KgnpgwlQcybZ/1FiBKoXHoS91nKi5l56ySX4PGYcUk6LKIqTEZe2PS6d9OkmsHpSfryTr2Rpz6RslfOiTL4k0OnLs6fOSrE0MD/Ei1u5T4CQ9AuV95h+XxSSsfmeByDaiLYPTEjacuDP6su/K4CNRwCq7CPbF7xiU1ZmBakAyjKC0YmlzJX1cHpKaA8dJiWo0ifg7gkYT1uioHGBVs/nlPlEpw1G/P8HRj5ITcfIWfOi1xMVWdFh8v/dXDqLDThY4Kv5oOLaRj9PAyVvqAo97vjjXJJbix+oTv7Hw8184DsDgBZ0BUt2eZOqA0wv0sw/xl/n+9ZJN3m9igL94VzBcF97FkySSdCuYgWsyYXnYib39H8RQ9edBZneTHECgZwQd/csklATGj/TbZIXgo4InQbB2c9sElv34oLJ9aSLgfTxTIqqYfacsVg1M/mkYE6TeqWU2JU8joe/7naNT7UeacIhqO7+kNKcayInCGv4T8dPVCpqppmj9sIY="
           template: cloudformation/cloudformation.yml
-          stack_name: KubernetesInfrastructure
+          stack_name: CloudFormationDeployerRole
           capabilities: CAPABILITY_IAM
           edge: true
           on:
