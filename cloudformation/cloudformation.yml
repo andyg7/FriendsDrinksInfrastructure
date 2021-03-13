@@ -1,0 +1,25 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Amazon CloudFormation deployer role resources'
+
+Resources:
+  CloudFormationDeployerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS: arn:aws:iam::${AWS::AccountId}:Bootstrap
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+
+Outputs:
+  RoleArn:
+    Description: The role used to deploy all other CloudFormation
+    Value: !GetAtt CloudFormationDeplouerRole.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-RoleArn"
