@@ -8,4 +8,5 @@ deploy:
   - provider: cloudformation
     template: cloudformation/template.yml
     stack_name: KubernetesInfrastructure
+    capabilities: CAPABILITY_IAM
     edge: true
