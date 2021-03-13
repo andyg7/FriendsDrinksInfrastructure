@@ -7,7 +7,7 @@ env:
 
 before_install:
 - echo "Installing AWS CLI"
-- pip install --upgrade --user awscli
+- /usr/bin/python -m pip install --upgrade pip
 
 install: true
 
