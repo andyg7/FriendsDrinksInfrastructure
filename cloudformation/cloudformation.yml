@@ -11,7 +11,8 @@ Resources:
         Statement:
           - Effect: Allow
             Principal:
-              AWS: arn:aws:iam::${AWS::AccountId}:Bootstrap
+              AWS:
+                - arn:aws:iam::${AWS::AccountId}:user/Bootstrap
             Action:
               - sts:AssumeRole
       ManagedPolicyArns:
