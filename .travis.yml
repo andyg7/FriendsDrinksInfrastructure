@@ -32,9 +32,10 @@ jobs:
         - unzip awscliv2.zip
         - sudo ./aws/install
       script:
-        - AWS_ACCESS_KEY_ID_STS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.AccessKeyId')
-        - AWS_SECRET_ACCESS_KEY_STS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.SecretAccessKey')
-        - AWS_SESSION_TOKEN_STS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.SessionToken')
+        - STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials')
+        - AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId')
+        - AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey')
+        - AWS_SESSION_TOKEN_STS=$(echo $STS_CREDENTIALS | jq -r '.SessionToken')
         - AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS)
         - AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS)
         - AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS)
