@@ -32,13 +32,13 @@ jobs:
         - unzip awscliv2.zip
         - sudo ./aws/install
       script:
-        - export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials')
-        - export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId')
-        - export AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey')
-        - export AWS_SESSION_TOKEN_STS=$(echo $STS_CREDENTIALS | jq -r '.SessionToken')
-        - export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS)
-        - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS)
-        - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS)
+        - export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials') >/dev/null 2>&1
+        - export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
+        - export AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey') >/dev/null 2>&1
+        - export AWS_SESSION_TOKEN_STS=$(echo $STS_CREDENTIALS | jq -r '.SessionToken') >/dev/null 2>&1
+        - export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
+        - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
+        - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
         - cat cloudformation/iam.yml
         - aws cloudformation validate-template --template-body file://cloudformation/iam.yml
         - aws cloudformation deploy --template-file cloudformation/iam.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
