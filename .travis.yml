@@ -1,4 +1,7 @@
 language: generic
+os: linux
+branches:
+  - main
 env:
   global:
   - AWS_DEFAULT_REGION=us-east-1
@@ -6,19 +9,16 @@ env:
 jobs:
   include:
     - stage: Deploy CloudFormation role
-      script: skip
-      deploy:
-        - provider: cloudformation
-          access_key_id:
-            secure: "ajJfUkTNeeLfxXaoXigobZV4LM+v1qXr5i1w8edAMnL1AvRdscKyPLKAhiSHf6DBXDxXdnTLCDsO7DiDvqIc3lKlmj3zwbwQ1TwAdkEe0xTBqU3Uql7ohbOBuEUup1Dp/HNDYA/vIhyIlaenK51eOz4qfFN2CWrCHFY6K5Tt0dhu9K6ORcF5XnsWNKSSVJuo7Lt6vjcMJUtQTgd5n0IkraGmW5cg4dZVwpSor14RThREW0b3lWyZOjtxAnrQJxiLcvfO/mPMpjgJNttG0/UJiH+KRJji0oJfZrNMQSIicTNYuMuGxmN7YXFPz2FaoXiOKUOyDpXOE6PvcSN5W2klBEEcYstQA4t+JLnxQs+ReBbi9dPALamkgPB7BGiM0EO+Ss55Fn8hY+mACOYC+D4UqB7M7FHZBrnBw80qDBtvDcbpSx82cHdf2WytzSiyn2W/uzApChVUi/Djydg30T1n3M2/JKnZQ7kmzy+In3KQIm5ErVF1imOvoowDa6A8XdlxjQUSoGCCSnrU5gkuoIk3dX6GhLNRn5tNKQO+LJ25xRhDgHi9syyVhq5g4Rvmd2YJ0h1QEGi7tYclgkvvWXnEVUQyKr3/hiU0I7Zbno4pYiiCC1yVdjAlm/kBHAhe3V2aM7x8noJ4NeBwVh2X0CLu+8Sr73/z3+1/yAiEM7DhtKA="
-          secret_access_key:
-            secure: "LL8f0Ak8LCr+Pes++oRFxur/kDa+q7V+/73ZkwSpt9L+mNCCdC5GOGkCECeUp30viDhmFnzaeHo4UUxeU+PNC8fvqCMVbzvpk7nS55uoSVxPOYY3OXUd1+H726Gi043/5JcLwCIVYkyQ1BsRuuQmz/i1oblHwaXUl15uUxgv7UIOc2313d4KgnpgwlQcybZ/1FiBKoXHoS91nKi5l56ySX4PGYcUk6LKIqTEZe2PS6d9OkmsHpSfryTr2Rpz6RslfOiTL4k0OnLs6fOSrE0MD/Ei1u5T4CQ9AuV95h+XxSSsfmeByDaiLYPTEjacuDP6su/K4CNRwCq7CPbF7xiU1ZmBakAyjKC0YmlzJX1cHpKaA8dJiWo0ifg7gkYT1uioHGBVs/nlPlEpw1G/P8HRj5ITcfIWfOi1xMVWdFh8v/dXDqLDThY4Kv5oOLaRj9PAyVvqAo97vjjXJJbix+oTv7Hw8184DsDgBZ0BUt2eZOqA0wv0sw/xl/n+9ZJN3m9igL94VzBcF97FkySSdCuYgWsyYXnYib39H8RQ9edBZneTHECgZwQd/csklATGj/TbZIXgo4InQbB2c9sElv34oLJ9aSLgfTxTIqqYfacsVg1M/mkYE6TeqWU2JU8joe/7naNT7UeacIhqO7+kNKcayInCGv4T8dPVCpqppmj9sIY="
-          template: cloudformation/cloudformation.yml
-          stack_name: CloudFormationDeployerRole
-          capabilities: CAPABILITY_IAM
-          edge: true
-          on:
-            branch: main
+      env:
+        - secure: "sxaVS0k6SmEDyc6MAHd30IXol4948k9i6D0lNJip4mY83hnxAW7rQeCAAJpsbZrkZfrb7xgU+9TdogH4RXVP+c2X/DAyn1gJG71/ArRYAxwB4ZP+GAVzC4BShayd1KHYVoVh0nPzMZnTT9At0a5AgdGDiSC/UNl52KPEQVUFB4EpiVA4k6lzvZDUuoROkB488/di26zbRNBresxK2vT91itsGfbBNs8RvtcuaAsWjx4wOsxdv5wYBjljoWDCrOqWTF/8FOnL/b4cT2GG7tYIaTW6rWlyVSBzRTN1PIQ/wqA3cd5QFRE8fbk7pen+LByRhFXplUyZHal2YKd+MquUWsxMuOQDCfYvxWucMHqQGR+yvnUyxZdEHLcJBgWIHrR3ktQJhQs7dGngIJNa3BfEBahZT3by3SfC8j4nWDZHXdgVnDfbVnBdCsZ6sw7mciZKCchuBJuAGJ7My9fzttWXGDwvK5wlqCLuMp5LGOPSaQaN+gOJ9UoIaqvSFlVefnLLmUeBmqc0pUYs35pkn6a+IopX1oz7zW4fjKB1ObUuklJq4ZVZZwnjBnaaHOwoKSDO9d1vqKJ0pjZk5E3Ay7sL9pIsl5Z19NB2f8er8Tj373ARk9QvnWu/i+XNHXvVFy+Cx6xMLwehlfoAR8Zt5cUVSt4S92GatVwINin0eia6myE="
+        - secure: "UpzNwnv1hwjvz700PFDBA6kmw6D6AkySPqwT3BJqG756/nvdc7OdKghpfUZjwMcmaf1Lp8ZN18PAUkRPGrRQVPQxAMhHCwpva4SBta0PeYNAg0lFt0sNdLSrVjNOYfPnVoOGIjqxyp9Uu9BOj0pvxq3o8yx4FelpGX4bL2kRSpFA7gZvdFEPgSYPQGhM5KeyQDRicGkVYrq+EI1l6hS50GRMkfZnAExOd0l16BueJ7b1e4VbGcsIL8DePAy/knZt4xHxcf7sxBlYHBKGzHMPcW0t882edzcT/W5E5n+6w9kyMCHHNsdZGjaVjAjaufR0ULC/k3ifLWT5pxF3XUZSECbNog13CRUv+QsUYiduvAZDLKF6iJLt3FB4u8+Opxk8QbenAuJv/s0+Sky/q1e5BdxpuGJH93AeJDjAAgap6wtJaxrI/GKfsvpWIpOh/kCy1pMmi/HMs6aVvi0Mvo5K8sRR1YtjEJUNzTveBJhMaqRQe02Kzom/mYH1RjjPW919AxeVJrylkxS1GIkD8l6mj0FUnpDu+950zfyEiZaoRxIEW3rBsmvChHAcP6IbfoOe+b4WDIz6s6Le3ARM6jUgx7mewGbD8WM1lUGijEn2wWf4lE02lj5LqEE82hRlXYWmkiYIiUaxCtoYjIOctSbFud+O/JKX13JgR6tQfxeZbiY="
+      install:
+        - "/usr/bin/python -m pip install --upgrade pip"
+        - pip install --upgrade --user awscli
+      script:
+        - cat cloudformation/cloudformation.yml
+        - aws cloudformation validate-template --template-body file://cloudformation/cloudformation.yml
+        - aws cloudformation list-stacks
     - stage: Deploy Kubernetes IAM infrastructure
       script: skip
       before_deploy: aws cloudformation list-stacks
@@ -32,5 +32,3 @@ jobs:
           stack_name: KubernetesIAMInfrastructure
           capabilities: CAPABILITY_IAM
           edge: true
-          on:
-            branch: main
