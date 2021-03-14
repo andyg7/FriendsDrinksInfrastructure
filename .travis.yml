@@ -21,12 +21,11 @@ jobs:
       script:
         - cat cloudformation/cloudformation_deployer_role.yml
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_deployer_role.yml
-        - aws cloudformation list-stacks
         - aws cloudformation deploy --template-file cloudformation/cloudformation_deployer_role.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
     - stage: Deploy Kubernetes IAM infrastructure
       env:
-        - secure: "QkG2SHEvzAq2IMn+obc4JPC9usOpm7YlhkSftXhi4IBer8aaQrpjm2G0KpTKcFfKuTxQFVtEigecI9cuBliAvOTm1wW8I/MdFHQ1xm61skEQWc+QV+PevPoQRRbkONE+Vhx5QwnXJUtEW8HP3W59wL6Xnu6OI3vN+NSNEBE3AxXTsua7zdPANt9U4e2UEL4jSziR//dYLTnLKLCOfwa6hhznEYq/vg/9wvKHaQFfvdTHIABC+5uvGq6sPenr+wS9ovalVFj+0JEnOgurwwD9LPHvGJvlrHa0XMaq98Y8ZRrCQl80YVDer+mqegl5V/yRx/N9p4LAwb4SrQ6IoGDUmSqTtJc4BkXICyR7zeLr/qj/wDEX+W5dn3/MxwXZmpyWWS8gW/qE2D9gztzz2eqExNEFHxkbXWlZHegMO/JHc4QEQthfQOp20P7X0H8E/K3DIa3ajSEcaCkpK1PT8v7IAppLtcYCtEXkDjsc6UJOUgEdFNZXUK+P35xnAUEFsyo9hC1RTRdp0/4P4VfJ0EKLXMpR8ctwu2nzEn5bRnWPc0g483x6fH3J3yeF7XqYjRzsTJeeHyi0EZaXm/9geRXZCcEPY+en63rjGMOoF4/rxlB41zv8LEBRKdZolpQyYNyOaN34F1anbndODkTaAdNPYkRniAEpAXMuEhRCOmMB3lY="
-        - secure: "a8U3i32lu5kVdNJAJYaXlmCsQ6nzFMt0FD9z9Rn2rZQeFtE7zEy1Y49xaVrkZtMn5PmqLePHmUpNqx8I86vI7QUSiaO9Q61mCVkWjJcPrWsQyEEy0JAzAo7QI9SYTL55UJIZcdP2XkU3wEz+CIB4FaxXVaxkYO+PCfNuy05pFb7TWm2mI3nabTwSaoFF26N3hAU+/kEevrkgdZXtvQrw9XVaOantnboKYIszp6UU8tlkfPQLezwnQBUbpnfCzwYviKfGPXOfbTc41N+EpGKZl88070mYd2fHYGOxVs+YuEjWrGiu8x/Mu2qhKaDPj3b++v5iBzTPitxUcrYA8m3dk0DbD6B3aoI1kHAIOM9Zec5MZkvSQ4PyUoSd6MsSbtUJ66iQYmWkWzLigMBwRGY9gdP7EyuEkwpeJAzMeyiGgMhCUN+gHjhz1PXAt1TcgD6pRW3WvWaNEMoGBlsYotXpdQGLG+WU+15rLX4qPPsMjOtqjNFZz7IZzre7IixwwNFu3PyNA0Ddf3aE0nhXUSAPZnSU7VkMq4iTfb7aQE0vUYIKVc2U+CnvmjG8zB5LLSOUKngXEEkx5a8vnozSyMtERZPh+QVrr7DblcDdqNy7r6O/0Pg2Dhn+dcmJjNyUeNwVHAFARfCJwMRKMQ+XsG3ZzfRZ8Lzd91KIW5706UofjHs="
+        - secure: "ndWCwNkaZ2Ro3CZtJPazU7MlYfqqWL7W6UYtyjtVQ9yhcJYTMtF+AyDAdxsEhYOmWszVeNp6A51ZGC3Xv020yGnGjnhemqGIYa0k5AA2iW7XEab/e9wTXJP720/kzZJZ4r32F0lTKQSUJVSgNmIitb4FcVgag9rpbUP5CRzSl7Ap5ksPo9crX1eTApbYR6OOKeVdDiAFGBqwwWEhrXf2OwJAtkkXSE50TFQ7UGjb8SaR8Cr2qhgKvUr9Fode3hfcQdAU4hotWFhVVqMVQLru5kWiAQJLAWyDm2EXWSO8PTm87S7GCiJMaHluddXR2zDMB7MlTgHYJhuo0J8e+99YN2n9Xq9+jALAT5uHvSIBbgH/KI4m7Tl6mX7ecsKOXLtRNlm5I18jdEXJfnL4ayWBRuPGqyThGyiJeCSewd37ohwY2hRQ/Iztqf4nlG3+C7VIz31NfTj/vO/s5J6TzPAIrrtCGfwnFyGYdYHYoJmhBl7JD9txyCV8iQ23Y3MEWwzkfByOhoKqI29SljSsiJmQbaM/bTQ60vWarcZ+iDiYm8VKbpDYjxUZDA9dZJJ7V0/26P1x4gxL8N2vPwYInPfmkml0Y2vjI0edTZ27PLmEhBbn5/3Hot3RcF/8nc3VlfmpcC8silicyzYXmZ7HosmvZicx6cYO/Y7y5BPh+2KDGoQ="
+        - secure: "i6GhWPG5Ob3wz26ztG0NfqSHrAEAmICzNeQKucpfRLzcABc+n7Wh2m76gDV0luk8YYWL+YL4Dgv78F//laip3RR+nk0t966hgDf2M7HL4aUmef0jumZ5iT396hcp6NDjzcUkMB7H0ZZMykdaWwr9ZlO4cHPgUKtqOBcx0v8vN/cFj8t1qELZ3sVqCT4cJYmiNUZHeD60j3YuergXeHWOZDDPIdTTs19eGIHJRqZ3+qaUHvWp0HdJTt2Z1Kty587QbsEfF9tLRH4zTsknx3nBD0vlybDlA8ZNCSGHeLR5W84EpYXQpCOemOaN3ecD81F50YFJir7WQEP8ZmdoO+2kdmlfeEcgeRAL4dsGpvriD70M1Ni3KEKTUzC/lWIs3NhXeD30ojqp8TAwILAI4JUYPHXTRlqSxQMztVDga/9Jeik5NL8xnCQCpZ+JLWWVzvEgTATq9Qrms8rMRjtyt4/e1JJq1oJm88pThck0BA7UqV6rR20aqYocMVfblcSEtdi9ppWdJWj289vyj2WJ99xWuDUyoNnPdVAnIMqmz8SydZrzfKpzDQPCf7XHdrePufqbrgrlWFzFjEiINLCJbQ3dzHRysiEDgi3nXxP7vjL07B6mEAD43BqNx0VdEdiRjrWNfnc7U/FyjoCgJ0PdeoZp8WNV2yy1QdhWOO8/fKCKzdo="
       install:
         - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
         - unzip awscliv2.zip
@@ -34,4 +33,4 @@ jobs:
       script:
         - cat cloudformation/iam.yml
         - aws cloudformation validate-template --template-body file://cloudformation/iam.yml
-        - aws cloudformation list-stacks
+        - aws cloudformation deploy --template-file cloudformation/iam.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
