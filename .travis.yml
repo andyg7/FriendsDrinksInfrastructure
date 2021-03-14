@@ -37,7 +37,7 @@ jobs:
         - AWS_SESSION_TOKEN_STS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.SessionToken')
         - AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS)
         - AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS)
-        - AWS_SESSION_TOKEN_STS=$(echo $AWS_SESSION_TOKEN_STS)
+        - AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS)
         - cat cloudformation/iam.yml
         - aws cloudformation validate-template --template-body file://cloudformation/iam.yml
         - aws cloudformation deploy --template-file cloudformation/iam.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
