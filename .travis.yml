@@ -22,14 +22,15 @@ jobs:
         - cat cloudformation/cloudformation_deployer_role.yml
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_deployer_role.yml
         - aws cloudformation list-stacks
-        - aws deploy --template-file cloudformation/cloudformation_deployer_role.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
+        - aws cloudformation deploy --template-file cloudformation/cloudformation_deployer_role.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
     - stage: Deploy Kubernetes IAM infrastructure
       env:
         - secure: "QkG2SHEvzAq2IMn+obc4JPC9usOpm7YlhkSftXhi4IBer8aaQrpjm2G0KpTKcFfKuTxQFVtEigecI9cuBliAvOTm1wW8I/MdFHQ1xm61skEQWc+QV+PevPoQRRbkONE+Vhx5QwnXJUtEW8HP3W59wL6Xnu6OI3vN+NSNEBE3AxXTsua7zdPANt9U4e2UEL4jSziR//dYLTnLKLCOfwa6hhznEYq/vg/9wvKHaQFfvdTHIABC+5uvGq6sPenr+wS9ovalVFj+0JEnOgurwwD9LPHvGJvlrHa0XMaq98Y8ZRrCQl80YVDer+mqegl5V/yRx/N9p4LAwb4SrQ6IoGDUmSqTtJc4BkXICyR7zeLr/qj/wDEX+W5dn3/MxwXZmpyWWS8gW/qE2D9gztzz2eqExNEFHxkbXWlZHegMO/JHc4QEQthfQOp20P7X0H8E/K3DIa3ajSEcaCkpK1PT8v7IAppLtcYCtEXkDjsc6UJOUgEdFNZXUK+P35xnAUEFsyo9hC1RTRdp0/4P4VfJ0EKLXMpR8ctwu2nzEn5bRnWPc0g483x6fH3J3yeF7XqYjRzsTJeeHyi0EZaXm/9geRXZCcEPY+en63rjGMOoF4/rxlB41zv8LEBRKdZolpQyYNyOaN34F1anbndODkTaAdNPYkRniAEpAXMuEhRCOmMB3lY="
         - secure: "a8U3i32lu5kVdNJAJYaXlmCsQ6nzFMt0FD9z9Rn2rZQeFtE7zEy1Y49xaVrkZtMn5PmqLePHmUpNqx8I86vI7QUSiaO9Q61mCVkWjJcPrWsQyEEy0JAzAo7QI9SYTL55UJIZcdP2XkU3wEz+CIB4FaxXVaxkYO+PCfNuy05pFb7TWm2mI3nabTwSaoFF26N3hAU+/kEevrkgdZXtvQrw9XVaOantnboKYIszp6UU8tlkfPQLezwnQBUbpnfCzwYviKfGPXOfbTc41N+EpGKZl88070mYd2fHYGOxVs+YuEjWrGiu8x/Mu2qhKaDPj3b++v5iBzTPitxUcrYA8m3dk0DbD6B3aoI1kHAIOM9Zec5MZkvSQ4PyUoSd6MsSbtUJ66iQYmWkWzLigMBwRGY9gdP7EyuEkwpeJAzMeyiGgMhCUN+gHjhz1PXAt1TcgD6pRW3WvWaNEMoGBlsYotXpdQGLG+WU+15rLX4qPPsMjOtqjNFZz7IZzre7IixwwNFu3PyNA0Ddf3aE0nhXUSAPZnSU7VkMq4iTfb7aQE0vUYIKVc2U+CnvmjG8zB5LLSOUKngXEEkx5a8vnozSyMtERZPh+QVrr7DblcDdqNy7r6O/0Pg2Dhn+dcmJjNyUeNwVHAFARfCJwMRKMQ+XsG3ZzfRZ8Lzd91KIW5706UofjHs="
       install:
-        - "/usr/bin/python -m pip install --upgrade pip"
-        - pip install --upgrade --user awscli
+        - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+        - unzip awscliv2.zip
+        - sudo ./aws/install
       script:
         - cat cloudformation/iam.yml
         - aws cloudformation validate-template --template-body file://cloudformation/iam.yml
