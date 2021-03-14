@@ -32,6 +32,9 @@ jobs:
         - unzip awscliv2.zip
         - sudo ./aws/install
       script:
+        - AWS_ACCESS_KEY_ID = $(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.AccessKeyId')
+        - AWS_SECRET_ACCESS_KEY = $(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.SecretAccessKey')
+        - AWS_SESSION_TOKEN = $(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials.SessionToken')
         - cat cloudformation/iam.yml
         - aws cloudformation validate-template --template-body file://cloudformation/iam.yml
         - aws cloudformation deploy --template-file cloudformation/iam.yml --stack-name CloudFormationDeployerRole --capabilities CAPABILITY_IAM
