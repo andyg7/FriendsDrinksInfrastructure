@@ -12,7 +12,7 @@ Resources:
           - Effect: Allow
             Principal:
               AWS:
-                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/CloudFormationDeployerUser'
+                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/Admin'
             Action:
               - sts:AssumeRole
       ManagedPolicyArns:
