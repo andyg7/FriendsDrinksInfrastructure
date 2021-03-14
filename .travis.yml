@@ -9,6 +9,10 @@ jobs:
       script: skip
       deploy:
         - provider: cloudformation
+          access_key_id:
+            secure: "ajJfUkTNeeLfxXaoXigobZV4LM+v1qXr5i1w8edAMnL1AvRdscKyPLKAhiSHf6DBXDxXdnTLCDsO7DiDvqIc3lKlmj3zwbwQ1TwAdkEe0xTBqU3Uql7ohbOBuEUup1Dp/HNDYA/vIhyIlaenK51eOz4qfFN2CWrCHFY6K5Tt0dhu9K6ORcF5XnsWNKSSVJuo7Lt6vjcMJUtQTgd5n0IkraGmW5cg4dZVwpSor14RThREW0b3lWyZOjtxAnrQJxiLcvfO/mPMpjgJNttG0/UJiH+KRJji0oJfZrNMQSIicTNYuMuGxmN7YXFPz2FaoXiOKUOyDpXOE6PvcSN5W2klBEEcYstQA4t+JLnxQs+ReBbi9dPALamkgPB7BGiM0EO+Ss55Fn8hY+mACOYC+D4UqB7M7FHZBrnBw80qDBtvDcbpSx82cHdf2WytzSiyn2W/uzApChVUi/Djydg30T1n3M2/JKnZQ7kmzy+In3KQIm5ErVF1imOvoowDa6A8XdlxjQUSoGCCSnrU5gkuoIk3dX6GhLNRn5tNKQO+LJ25xRhDgHi9syyVhq5g4Rvmd2YJ0h1QEGi7tYclgkvvWXnEVUQyKr3/hiU0I7Zbno4pYiiCC1yVdjAlm/kBHAhe3V2aM7x8noJ4NeBwVh2X0CLu+8Sr73/z3+1/yAiEM7DhtKA="
+          secret_access_key:
+            secure: "LL8f0Ak8LCr+Pes++oRFxur/kDa+q7V+/73ZkwSpt9L+mNCCdC5GOGkCECeUp30viDhmFnzaeHo4UUxeU+PNC8fvqCMVbzvpk7nS55uoSVxPOYY3OXUd1+H726Gi043/5JcLwCIVYkyQ1BsRuuQmz/i1oblHwaXUl15uUxgv7UIOc2313d4KgnpgwlQcybZ/1FiBKoXHoS91nKi5l56ySX4PGYcUk6LKIqTEZe2PS6d9OkmsHpSfryTr2Rpz6RslfOiTL4k0OnLs6fOSrE0MD/Ei1u5T4CQ9AuV95h+XxSSsfmeByDaiLYPTEjacuDP6su/K4CNRwCq7CPbF7xiU1ZmBakAyjKC0YmlzJX1cHpKaA8dJiWo0ifg7gkYT1uioHGBVs/nlPlEpw1G/P8HRj5ITcfIWfOi1xMVWdFh8v/dXDqLDThY4Kv5oOLaRj9PAyVvqAo97vjjXJJbix+oTv7Hw8184DsDgBZ0BUt2eZOqA0wv0sw/xl/n+9ZJN3m9igL94VzBcF97FkySSdCuYgWsyYXnYib39H8RQ9edBZneTHECgZwQd/csklATGj/TbZIXgo4InQbB2c9sElv34oLJ9aSLgfTxTIqqYfacsVg1M/mkYE6TeqWU2JU8joe/7naNT7UeacIhqO7+kNKcayInCGv4T8dPVCpqppmj9sIY="
           template: cloudformation/cloudformation.yml
           stack_name: CloudFormationDeployerRole
           capabilities: CAPABILITY_IAM
@@ -17,8 +21,13 @@ jobs:
             branch: main
     - stage: Deploy Kubernetes IAM infrastructure
       script: skip
+      before_deploy: aws cloudformation list-stacks
       deploy:
         - provider: cloudformation
+          access_key_id:
+            secure: "Nve3aFtofjcy3G23Od0mQv01gTrYFO5YAjizDFD3ra3u//LeneOKlhd+dTwqffUVcuU8y41y/u+VpXjl7XU1cONGnn9pbDQ08Zhi3y6/6zGC4hJtgLerkRSoWcFixovtvGzco0QtzmyMx+Nd5Ev/ktM3ZY2SSD18leeaOkFP+o1lD+Vru5+kTFkAzg6fh+aCthRZ1k2mHFf6Z5c90mfanF/z5Lt566BDgfqebiKbWuUBwfwrurR5N59O2uyQxMsJmP97EhmMPCClSa+nR+AkaokCPh4S1EuF7Eb0mrxYx3Ra2eM/UTniPnAR9fHLKAYrbW80wAeA8bl9Zc5fo6XfUww8CNB0Gyg7L9A2sTzUZ+TrFHI43CusSk+01T5M79AeENuOOlI43Kb9GBVa6BN+axYrONowhrKcnUdFeJcWDbLzMTiCNld9WQdwSewobzTdB61JGSh3/f+91MDU7IO9Ym16PSv+cvdItA3xFay7Dh/rjk2TJVubn9qG865ZCawA89mhH5k9P5BzUuRTJ+xw5ZpwezYmDIZan297/nE3rvndEX933hPjV9JcpsPM47S/KH+m0aQQneNtbMLQXlZDpuop+C1YvsTOzGxEEe1sP+Dmt4V9mvHjCnKRtVFJqvFvxQDKuop0awe1FxohP3T+6wqju8pt1bV6MXKYSrV+pQI="
+          secret_access_key:
+            secure: "kSvzCBIUGJyz3BxWmJ8g0MO1IOGGOwDuQaw4lKXqq+HFP1UCwgs0TX+GzPVmuQ7+Bjeeehp/vy4VWDul0nL2E4E/sXR79ds4S1Ifbl4ZRd7gzOB+OGzzm/UuKiwRYfoxMnEeh+trfMXUD/yHmCFh3gNe/5ODSkL/Sl3PnXbtBA2khUa0Dq3jc1+Q/zI4DWxyEQhi3mSmdli+WUAIkcJr5IlnULoNwOdlcV4hFq8QkD8wwS9fSoeqanVbBh43C9LlZ25q2GN6bj2kaQaz74ppaqUsyInHXXDwVZyG8wxZJzrW086hIT1c+9CX9holTc8mhNmg6nRHoRA4WFOq2IEnbMe+H6bJSUnLdnpiQYsButBZrjf/2qbpX6ROz5yh5hbTk/qEET/n9yaST/mOS+wl3wvRZgrzDmL5AyRtyTc/ViJd1VQLsFotkczfSsmi4w1KtfnfjaUHwjRasbS+5IP30OSDZDwbBllwYF3LjbaRsL3x1zVyGc/b7yCiubeLjbh9MsO/+jxS0Ydjdzp9ZvvZDZBJwcf8hXb6UiX3a7bjgVri5E4KYcXCtb3fXwi1ko5GYhozZaSdUrWlVlExorYziXkWxfC6tKuz1xgWDNrb+fgf34ADTqlzN32Uu1xMlGuEs+tb4m3NT4l5sD0p314FI6sLrZ1PwO6mmweiVWuEoMQ="
           template: cloudformation/iam.yml
           stack_name: KubernetesIAMInfrastructure
           capabilities: CAPABILITY_IAM
