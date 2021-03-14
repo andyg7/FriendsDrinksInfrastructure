@@ -10,8 +10,8 @@ jobs:
   include:
     - stage: Deploy CloudFormation role
       env:
-        - secure: "sxaVS0k6SmEDyc6MAHd30IXol4948k9i6D0lNJip4mY83hnxAW7rQeCAAJpsbZrkZfrb7xgU+9TdogH4RXVP+c2X/DAyn1gJG71/ArRYAxwB4ZP+GAVzC4BShayd1KHYVoVh0nPzMZnTT9At0a5AgdGDiSC/UNl52KPEQVUFB4EpiVA4k6lzvZDUuoROkB488/di26zbRNBresxK2vT91itsGfbBNs8RvtcuaAsWjx4wOsxdv5wYBjljoWDCrOqWTF/8FOnL/b4cT2GG7tYIaTW6rWlyVSBzRTN1PIQ/wqA3cd5QFRE8fbk7pen+LByRhFXplUyZHal2YKd+MquUWsxMuOQDCfYvxWucMHqQGR+yvnUyxZdEHLcJBgWIHrR3ktQJhQs7dGngIJNa3BfEBahZT3by3SfC8j4nWDZHXdgVnDfbVnBdCsZ6sw7mciZKCchuBJuAGJ7My9fzttWXGDwvK5wlqCLuMp5LGOPSaQaN+gOJ9UoIaqvSFlVefnLLmUeBmqc0pUYs35pkn6a+IopX1oz7zW4fjKB1ObUuklJq4ZVZZwnjBnaaHOwoKSDO9d1vqKJ0pjZk5E3Ay7sL9pIsl5Z19NB2f8er8Tj373ARk9QvnWu/i+XNHXvVFy+Cx6xMLwehlfoAR8Zt5cUVSt4S92GatVwINin0eia6myE="
-        - secure: "UpzNwnv1hwjvz700PFDBA6kmw6D6AkySPqwT3BJqG756/nvdc7OdKghpfUZjwMcmaf1Lp8ZN18PAUkRPGrRQVPQxAMhHCwpva4SBta0PeYNAg0lFt0sNdLSrVjNOYfPnVoOGIjqxyp9Uu9BOj0pvxq3o8yx4FelpGX4bL2kRSpFA7gZvdFEPgSYPQGhM5KeyQDRicGkVYrq+EI1l6hS50GRMkfZnAExOd0l16BueJ7b1e4VbGcsIL8DePAy/knZt4xHxcf7sxBlYHBKGzHMPcW0t882edzcT/W5E5n+6w9kyMCHHNsdZGjaVjAjaufR0ULC/k3ifLWT5pxF3XUZSECbNog13CRUv+QsUYiduvAZDLKF6iJLt3FB4u8+Opxk8QbenAuJv/s0+Sky/q1e5BdxpuGJH93AeJDjAAgap6wtJaxrI/GKfsvpWIpOh/kCy1pMmi/HMs6aVvi0Mvo5K8sRR1YtjEJUNzTveBJhMaqRQe02Kzom/mYH1RjjPW919AxeVJrylkxS1GIkD8l6mj0FUnpDu+950zfyEiZaoRxIEW3rBsmvChHAcP6IbfoOe+b4WDIz6s6Le3ARM6jUgx7mewGbD8WM1lUGijEn2wWf4lE02lj5LqEE82hRlXYWmkiYIiUaxCtoYjIOctSbFud+O/JKX13JgR6tQfxeZbiY="
+        - secure: "NTDkW1owt0tIXbd2BoLjcUHunQYlsD+NMW3zVASAw40KI2EavoI4ZhGg9UOe+0Aym/LaWMA7E0HNfMBNiLHochBEoxcL8rWRvCLeS1O0nNuTSx/wG/2L5AMoTkZhQ3ibfovJAN/mgkrtRk8hC/xHi5H/GxZzwEQlCT7vK2MH/xNJfStwLvcHnyYZlPcAML9b1xogETsoJyPPc9Sw1nVnJrUuT1plk3Jw/CTTYyD4JFt6tuNXBrkKpI4viAO7Kf2rdD6JQAUKw4IgRDzcoLQFIF0SSn3xQ/PQZrHF/u0e3gU+FBK/7L9vEa0IukopLJvqng12JGZtmUos1OUuKXnRcEyllshWmYz3SPPfXcV17HW741R8EMdaJ9l8ld+kWvvNArC9WGg054gTAkxf1Qz+P+9IKCE/fAjhz7AZa408dkmmnfQwr71WmmAaKHslWqru5AUOfcPa3tt+uQc7Jqn3A44m1AKvqs3yEkcGmfYy25gtKGnridCJ9sfF84sw7c4me8Nxbx+IUUtA+93txJZhWfLuxHt2Q0VUAW6T0q1MXPcaMefvz9TtmuPk5sT63brXAUlOiggjlUxyGMZtAOqAhfZYvXd713MKjkRK4iqz1Y+gMeJNN3p/TKLUwWyh/mfZVZz0yLoFOXB5aCpBM+x4+qvVKjQIGlfJHVj6mtkJoJc="
+        - secure: "IYw7MGxZ06gDDxzk+LeVPUWms2XFEttQf67Wbph7VtmGJWMUzmTZxOyfncrUA1W6fJHAD1DTj4UQkSjcwGeVASCXCpGF4WaElozXS+dW1JcKpMVvDfasDiwoK+MCsPbqF0HuHhbhWqyS3/v+Pst/Qi9xOIgAcDRe6NWv8FYOEuqfvPcszWD43U2f9b7yCruUcz2DOG460u7t/PQd81jtHNeC3c/+UsPtZ1wDwS1zGJCTs2PJ3oYGH1b3lGqHoEojTIqJMLqgfCs5wv1LfAFop+zMfDwWx01bRRcF2lSopHBFkx/eart93GIeIG7ZvDAuglc7dfGoGiF7vHoabfZsVBvjCdTdNZljABUSHvAKZUvbcaTkQUJe2nI+gpXjFyCU2NafdmJWVbjGDVL9kQmr6XOexEPtGyI740MDPHiwsicKNg3zDAZb0xA3hCnL82wJiCvRWxGQHpUF3FLFJ6GwcJPAkLrwt+KWfMrVeUow2Lgi21WDmv8suNiNHZ9S7IdbMzgFa7k4+Fok4G5tM6Pfcuf9eBIDwO3DLmXTn7rPBEMtJk77SvJRhlV9WgLiU7NSgalUhu4TM5pF73kiTpUyEYb2wmIlejiP9Jwqe2guSRNEvfpq+01Xxhtxaot50RQ82v27cMKLmt03p2MwCQyryHJskl+LO6d0+3PpRbibOac="
       install:
         - "/usr/bin/python -m pip install --upgrade pip"
         - pip install --upgrade --user awscli
@@ -20,15 +20,13 @@ jobs:
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation.yml
         - aws cloudformation list-stacks
     - stage: Deploy Kubernetes IAM infrastructure
-      script: skip
-      before_deploy: aws cloudformation list-stacks
-      deploy:
-        - provider: cloudformation
-          access_key_id:
-            secure: "Nve3aFtofjcy3G23Od0mQv01gTrYFO5YAjizDFD3ra3u//LeneOKlhd+dTwqffUVcuU8y41y/u+VpXjl7XU1cONGnn9pbDQ08Zhi3y6/6zGC4hJtgLerkRSoWcFixovtvGzco0QtzmyMx+Nd5Ev/ktM3ZY2SSD18leeaOkFP+o1lD+Vru5+kTFkAzg6fh+aCthRZ1k2mHFf6Z5c90mfanF/z5Lt566BDgfqebiKbWuUBwfwrurR5N59O2uyQxMsJmP97EhmMPCClSa+nR+AkaokCPh4S1EuF7Eb0mrxYx3Ra2eM/UTniPnAR9fHLKAYrbW80wAeA8bl9Zc5fo6XfUww8CNB0Gyg7L9A2sTzUZ+TrFHI43CusSk+01T5M79AeENuOOlI43Kb9GBVa6BN+axYrONowhrKcnUdFeJcWDbLzMTiCNld9WQdwSewobzTdB61JGSh3/f+91MDU7IO9Ym16PSv+cvdItA3xFay7Dh/rjk2TJVubn9qG865ZCawA89mhH5k9P5BzUuRTJ+xw5ZpwezYmDIZan297/nE3rvndEX933hPjV9JcpsPM47S/KH+m0aQQneNtbMLQXlZDpuop+C1YvsTOzGxEEe1sP+Dmt4V9mvHjCnKRtVFJqvFvxQDKuop0awe1FxohP3T+6wqju8pt1bV6MXKYSrV+pQI="
-          secret_access_key:
-            secure: "kSvzCBIUGJyz3BxWmJ8g0MO1IOGGOwDuQaw4lKXqq+HFP1UCwgs0TX+GzPVmuQ7+Bjeeehp/vy4VWDul0nL2E4E/sXR79ds4S1Ifbl4ZRd7gzOB+OGzzm/UuKiwRYfoxMnEeh+trfMXUD/yHmCFh3gNe/5ODSkL/Sl3PnXbtBA2khUa0Dq3jc1+Q/zI4DWxyEQhi3mSmdli+WUAIkcJr5IlnULoNwOdlcV4hFq8QkD8wwS9fSoeqanVbBh43C9LlZ25q2GN6bj2kaQaz74ppaqUsyInHXXDwVZyG8wxZJzrW086hIT1c+9CX9holTc8mhNmg6nRHoRA4WFOq2IEnbMe+H6bJSUnLdnpiQYsButBZrjf/2qbpX6ROz5yh5hbTk/qEET/n9yaST/mOS+wl3wvRZgrzDmL5AyRtyTc/ViJd1VQLsFotkczfSsmi4w1KtfnfjaUHwjRasbS+5IP30OSDZDwbBllwYF3LjbaRsL3x1zVyGc/b7yCiubeLjbh9MsO/+jxS0Ydjdzp9ZvvZDZBJwcf8hXb6UiX3a7bjgVri5E4KYcXCtb3fXwi1ko5GYhozZaSdUrWlVlExorYziXkWxfC6tKuz1xgWDNrb+fgf34ADTqlzN32Uu1xMlGuEs+tb4m3NT4l5sD0p314FI6sLrZ1PwO6mmweiVWuEoMQ="
-          template: cloudformation/iam.yml
-          stack_name: KubernetesIAMInfrastructure
-          capabilities: CAPABILITY_IAM
-          edge: true
+      env:
+        - secure: "QkG2SHEvzAq2IMn+obc4JPC9usOpm7YlhkSftXhi4IBer8aaQrpjm2G0KpTKcFfKuTxQFVtEigecI9cuBliAvOTm1wW8I/MdFHQ1xm61skEQWc+QV+PevPoQRRbkONE+Vhx5QwnXJUtEW8HP3W59wL6Xnu6OI3vN+NSNEBE3AxXTsua7zdPANt9U4e2UEL4jSziR//dYLTnLKLCOfwa6hhznEYq/vg/9wvKHaQFfvdTHIABC+5uvGq6sPenr+wS9ovalVFj+0JEnOgurwwD9LPHvGJvlrHa0XMaq98Y8ZRrCQl80YVDer+mqegl5V/yRx/N9p4LAwb4SrQ6IoGDUmSqTtJc4BkXICyR7zeLr/qj/wDEX+W5dn3/MxwXZmpyWWS8gW/qE2D9gztzz2eqExNEFHxkbXWlZHegMO/JHc4QEQthfQOp20P7X0H8E/K3DIa3ajSEcaCkpK1PT8v7IAppLtcYCtEXkDjsc6UJOUgEdFNZXUK+P35xnAUEFsyo9hC1RTRdp0/4P4VfJ0EKLXMpR8ctwu2nzEn5bRnWPc0g483x6fH3J3yeF7XqYjRzsTJeeHyi0EZaXm/9geRXZCcEPY+en63rjGMOoF4/rxlB41zv8LEBRKdZolpQyYNyOaN34F1anbndODkTaAdNPYkRniAEpAXMuEhRCOmMB3lY="
+        - secure: "a8U3i32lu5kVdNJAJYaXlmCsQ6nzFMt0FD9z9Rn2rZQeFtE7zEy1Y49xaVrkZtMn5PmqLePHmUpNqx8I86vI7QUSiaO9Q61mCVkWjJcPrWsQyEEy0JAzAo7QI9SYTL55UJIZcdP2XkU3wEz+CIB4FaxXVaxkYO+PCfNuy05pFb7TWm2mI3nabTwSaoFF26N3hAU+/kEevrkgdZXtvQrw9XVaOantnboKYIszp6UU8tlkfPQLezwnQBUbpnfCzwYviKfGPXOfbTc41N+EpGKZl88070mYd2fHYGOxVs+YuEjWrGiu8x/Mu2qhKaDPj3b++v5iBzTPitxUcrYA8m3dk0DbD6B3aoI1kHAIOM9Zec5MZkvSQ4PyUoSd6MsSbtUJ66iQYmWkWzLigMBwRGY9gdP7EyuEkwpeJAzMeyiGgMhCUN+gHjhz1PXAt1TcgD6pRW3WvWaNEMoGBlsYotXpdQGLG+WU+15rLX4qPPsMjOtqjNFZz7IZzre7IixwwNFu3PyNA0Ddf3aE0nhXUSAPZnSU7VkMq4iTfb7aQE0vUYIKVc2U+CnvmjG8zB5LLSOUKngXEEkx5a8vnozSyMtERZPh+QVrr7DblcDdqNy7r6O/0Pg2Dhn+dcmJjNyUeNwVHAFARfCJwMRKMQ+XsG3ZzfRZ8Lzd91KIW5706UofjHs="
+      install:
+        - "/usr/bin/python -m pip install --upgrade pip"
+        - pip install --upgrade --user awscli
+      script:
+        - cat cloudformation/iam.yml
+        - aws cloudformation validate-template --template-body file://cloudformation/iam.yml
+        - aws cloudformation list-stacks
