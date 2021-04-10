@@ -15,9 +15,10 @@ jobs:
         - secure: "NTDkW1owt0tIXbd2BoLjcUHunQYlsD+NMW3zVASAw40KI2EavoI4ZhGg9UOe+0Aym/LaWMA7E0HNfMBNiLHochBEoxcL8rWRvCLeS1O0nNuTSx/wG/2L5AMoTkZhQ3ibfovJAN/mgkrtRk8hC/xHi5H/GxZzwEQlCT7vK2MH/xNJfStwLvcHnyYZlPcAML9b1xogETsoJyPPc9Sw1nVnJrUuT1plk3Jw/CTTYyD4JFt6tuNXBrkKpI4viAO7Kf2rdD6JQAUKw4IgRDzcoLQFIF0SSn3xQ/PQZrHF/u0e3gU+FBK/7L9vEa0IukopLJvqng12JGZtmUos1OUuKXnRcEyllshWmYz3SPPfXcV17HW741R8EMdaJ9l8ld+kWvvNArC9WGg054gTAkxf1Qz+P+9IKCE/fAjhz7AZa408dkmmnfQwr71WmmAaKHslWqru5AUOfcPa3tt+uQc7Jqn3A44m1AKvqs3yEkcGmfYy25gtKGnridCJ9sfF84sw7c4me8Nxbx+IUUtA+93txJZhWfLuxHt2Q0VUAW6T0q1MXPcaMefvz9TtmuPk5sT63brXAUlOiggjlUxyGMZtAOqAhfZYvXd713MKjkRK4iqz1Y+gMeJNN3p/TKLUwWyh/mfZVZz0yLoFOXB5aCpBM+x4+qvVKjQIGlfJHVj6mtkJoJc="
         - secure: "IYw7MGxZ06gDDxzk+LeVPUWms2XFEttQf67Wbph7VtmGJWMUzmTZxOyfncrUA1W6fJHAD1DTj4UQkSjcwGeVASCXCpGF4WaElozXS+dW1JcKpMVvDfasDiwoK+MCsPbqF0HuHhbhWqyS3/v+Pst/Qi9xOIgAcDRe6NWv8FYOEuqfvPcszWD43U2f9b7yCruUcz2DOG460u7t/PQd81jtHNeC3c/+UsPtZ1wDwS1zGJCTs2PJ3oYGH1b3lGqHoEojTIqJMLqgfCs5wv1LfAFop+zMfDwWx01bRRcF2lSopHBFkx/eart93GIeIG7ZvDAuglc7dfGoGiF7vHoabfZsVBvjCdTdNZljABUSHvAKZUvbcaTkQUJe2nI+gpXjFyCU2NafdmJWVbjGDVL9kQmr6XOexEPtGyI740MDPHiwsicKNg3zDAZb0xA3hCnL82wJiCvRWxGQHpUF3FLFJ6GwcJPAkLrwt+KWfMrVeUow2Lgi21WDmv8suNiNHZ9S7IdbMzgFa7k4+Fok4G5tM6Pfcuf9eBIDwO3DLmXTn7rPBEMtJk77SvJRhlV9WgLiU7NSgalUhu4TM5pF73kiTpUyEYb2wmIlejiP9Jwqe2guSRNEvfpq+01Xxhtxaot50RQ82v27cMKLmt03p2MwCQyryHJskl+LO6d0+3PpRbibOac="
       install:
-        - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+        - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         - unzip awscliv2.zip
         - sudo ./aws/install
+        - aws --version
       script:
         - cat cloudformation/cloudformation_deployer_role.yml
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_deployer_role.yml
@@ -28,9 +29,10 @@ jobs:
         - secure: "i6GhWPG5Ob3wz26ztG0NfqSHrAEAmICzNeQKucpfRLzcABc+n7Wh2m76gDV0luk8YYWL+YL4Dgv78F//laip3RR+nk0t966hgDf2M7HL4aUmef0jumZ5iT396hcp6NDjzcUkMB7H0ZZMykdaWwr9ZlO4cHPgUKtqOBcx0v8vN/cFj8t1qELZ3sVqCT4cJYmiNUZHeD60j3YuergXeHWOZDDPIdTTs19eGIHJRqZ3+qaUHvWp0HdJTt2Z1Kty587QbsEfF9tLRH4zTsknx3nBD0vlybDlA8ZNCSGHeLR5W84EpYXQpCOemOaN3ecD81F50YFJir7WQEP8ZmdoO+2kdmlfeEcgeRAL4dsGpvriD70M1Ni3KEKTUzC/lWIs3NhXeD30ojqp8TAwILAI4JUYPHXTRlqSxQMztVDga/9Jeik5NL8xnCQCpZ+JLWWVzvEgTATq9Qrms8rMRjtyt4/e1JJq1oJm88pThck0BA7UqV6rR20aqYocMVfblcSEtdi9ppWdJWj289vyj2WJ99xWuDUyoNnPdVAnIMqmz8SydZrzfKpzDQPCf7XHdrePufqbrgrlWFzFjEiINLCJbQ3dzHRysiEDgi3nXxP7vjL07B6mEAD43BqNx0VdEdiRjrWNfnc7U/FyjoCgJ0PdeoZp8WNV2yy1QdhWOO8/fKCKzdo="
         - secure: "dmDsCWriYEVFzTz6ej7wFawcuSVr0hhlQUFlpbScGHPTggGFyy9t7MThsQ8kLTmj6XHd+7f7wQXncUyUSg3z7qT75UFDkcHVETzUogYKpie/IqDfA9lxsvgS4FypjktVUmX8y9WpT+OCDBwY7rU/28Vd1U1/znLdGT5k6ESHQFd9u5Zr1cQYJb31Qfr/DRkNtSjzQE8Ai2G+sEwo2x+G5lr2qizIxr80f4uCAsCFu6zZBfjLs8lmYVINUxthwJ2wRoIpZ1OMvwkP5o4Tp+pR2JWRlS80Bi8oTehypTp+XBRh43MFK7xl4MtzrARbT5fhHHTh9acSrodMm3pmulY8+W8Hf3wD0HKo7Is3bX6bKVNxYJB/VHjXEeuYNc6P+uV4ePUHGrbwCNKTx825zsHH1VDA6ZlLdA22o+K7LKefJGm7P9LtUVlyeZ3Oy7CEtByVK/1i1YwUH1yQfH9kyaqC9aGC2vsSTpwJLGOt0tkVMXr+Cf2ztpfZdbcjgJWsRS+mQUXuqQVG8I63AiHdyfDXlr7okLgEIeK28RvCUZHhLZSG1KlV8FL2WZwSlsC6jr/ubYlzovnxvZ9ibPC5GSAdJmj9MNwR2uthXtlpBrFVYgMTtlXkYq2nxMsErK7Kl1CosYFjuNRZ2j/KGYfFb43u2AkhCLOPN6meFMU2O8Q8uTY="
       install:
-        - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-2.0.30.zip" -o "awscliv2.zip"
+        - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
         - unzip awscliv2.zip
         - sudo ./aws/install
+        - aws --version
       script:
         - export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name CloudFormationDeploymentSession | jq -r '.Credentials') >/dev/null 2>&1
         - export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
