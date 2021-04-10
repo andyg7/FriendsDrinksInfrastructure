@@ -18,6 +18,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
         - arn:aws:iam::aws:policy/IAMFullAccess
+        - arn:aws:iam::aws:policy/EC2FullAccess
 
 Outputs:
   RoleArn:
