@@ -286,11 +286,11 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-PrivateSubnetIds"
 
-  SecurityGroups:
+  SecurityGroup:
     Description: Security group for the cluster control plane communication with worker nodes
-    Value: !Join [ ",", [ !Ref ControlPlaneSecurityGroup ] ]
+    Value: !Ref ControlPlaneSecurityGroup
     Export:
-      Name: !Sub "${AWS::StackName}-SecurityGroups"
+      Name: !Sub "${AWS::StackName}-SecurityGroup"
 
   VpcId:
     Description: The VPC Id
