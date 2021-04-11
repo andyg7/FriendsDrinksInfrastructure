@@ -23,7 +23,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
       Policies:
-        - PolicyName: EKS full access
+        - PolicyName: EKSFullAccess
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
