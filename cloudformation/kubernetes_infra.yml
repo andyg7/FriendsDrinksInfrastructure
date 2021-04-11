@@ -59,9 +59,9 @@ Resources:
             - Fn::ImportValue:
                 Fn::Sub: "${VPCStackName}-SubnetIds"
 
-  EKSNodeGroup:
+  EKSNodegroup:
     DependsOn: EKSWorkerNodeInstanceRole
-    Type: 'AWS::EKS::NodeGroup'
+    Type: 'AWS::EKS::Nodegroup'
     Properties:
       AmiType: 'AL2_x86_64'
       CapacityType: 'ON_DEMAND'
@@ -78,7 +78,7 @@ Resources:
         Fn::Split:
           - ","
           - Fn::ImportValue:
-              Fn::Sub: "${VPCStackName}-PrivateSubnetIds"
+              Fn::Sub: "${VPCStackName}-SubnetIds"
 
 Outputs:
   EKSClusterRoleArn:
