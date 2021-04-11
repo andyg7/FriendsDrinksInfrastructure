@@ -278,6 +278,12 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-SubnetIds"
 
+  PublicSubnetIds:
+    Description: Public subnets IDs in the VPC
+    Value: !Join [ ",", [ !Ref PublicSubnet01, !Ref PublicSubnet02 ] ]
+    Export:
+      Name: !Sub "${AWS::StackName}-PublicSubnetIds"
+
   PrivateSubnetIds:
     Description: Private subnets IDs in the VPC
     Value: !Join [ ",", [ !Ref PrivateSubnet01, !Ref PrivateSubnet02 ] ]
