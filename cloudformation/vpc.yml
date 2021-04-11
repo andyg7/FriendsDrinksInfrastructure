@@ -3,7 +3,6 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Amazon EKS Sample VPC - Private and Public subnets'
 
 Parameters:
-
   VpcBlock:
     Type: String
     Default: 192.168.0.0/16

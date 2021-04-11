@@ -2,6 +2,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Amazon EKS resources'
 
+Parameters:
+  VPCStackName:
+    Type: String
+    Description: VPC stack name
+
+
 Resources:
   EKSClusterRole:
     Type: AWS::IAM::Role
@@ -17,6 +23,7 @@ Resources:
               - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+
 
 Outputs:
   EKSClusterRoleArn:
