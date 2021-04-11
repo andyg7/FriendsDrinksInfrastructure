@@ -278,6 +278,12 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-SubnetIds"
 
+  PrivateSubnetIds:
+    Description: Private subnets IDs in the VPC
+    Value: !Join [ ",", [ !Ref PrivateSubnet01, !Ref PrivateSubnet02 ] ]
+    Export:
+      Name: !Sub "${AWS::StackName}-PrivateSubnetIds"
+
   SecurityGroup:
     Description: Security group for the cluster control plane communication with worker nodes
     Value: !Ref ControlPlaneSecurityGroup
