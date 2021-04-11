@@ -28,7 +28,7 @@ Resources:
     Type: 'AWS::EKS::Cluster'
     Properties:
       Name: EKSCluster
-      Version: '1.18'
+      Version: '1.19'
       RoleArn: !GetAtt EKSClusterRole.Arn
       ResourcesVpcConfig:
         SecurityGroupIds:
@@ -38,7 +38,7 @@ Resources:
           Fn::Split:
             - ","
             - Fn::ImportValue:
-                Fn::Sub: "${VPCStackName}-PrivateSubnetIds"
+                Fn::Sub: "${VPCStackName}-SubnetIds"
 
 Outputs:
   EKSClusterRoleArn:
