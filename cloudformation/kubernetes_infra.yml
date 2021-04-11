@@ -23,7 +23,7 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
 
-  WorkerNodeInstanceRole:
+  EKSWorkerNodeInstanceRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -64,9 +64,9 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
 
-  WorkerNodeInstanceRole:
+  EKSWorkerNodeInstanceRole:
     Description: The node instance role
-    Value: !GetAtt WorkerNodeInstanceRole.Arn
+    Value: !GetAtt EKSWorkerNodeInstanceRole.Arn
 
   EKSClusterName:
     Description: EKS cluster name
