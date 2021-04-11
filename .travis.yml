@@ -64,4 +64,4 @@ jobs:
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
         - cat cloudformation/kubernetes_infra.yml
         - aws cloudformation validate-template --template-body file://cloudformation/kubernetes_infra.yml
-        - aws cloudformation deploy --template-file cloudformation/kubernetes_infra.yml --stack-name KubernetesInfrastructure --capabilities CAPABILITY_IAM --parameter-overrides VPCStackName=VPCInfrastructure
+        - travis_wait 30 aws cloudformation deploy --template-file cloudformation/kubernetes_infra.yml --stack-name KubernetesInfrastructure --capabilities CAPABILITY_IAM --parameter-overrides VPCStackName=VPCInfrastructure
