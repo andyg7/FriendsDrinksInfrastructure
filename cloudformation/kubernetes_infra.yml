@@ -7,7 +7,6 @@ Parameters:
     Type: String
     Description: VPC stack name
 
-
 Resources:
   EKSClusterRole:
     Type: AWS::IAM::Role
@@ -24,6 +23,22 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
 
+  EKSCluster:
+    DependsOn: EKSClusterRole
+    Type: 'AWS::EKS::Cluster'
+    Properties:
+      Name: EKSCluster
+      Version: '1.18'
+      RoleArn: !Ref EKSClusterRole
+      ResourcesVpcConfig:
+        SecurityGroupIds:
+          - Fn::ImportValue:
+              !Sub "${VPCStackName}-SecurityGroup"
+        SubnetIds:
+          Fn::Split:
+            - ","
+            - Fn::ImportValue:
+                Fn::Sub: "${VPCStackName}-PrivateSubnetIds"
 
 Outputs:
   EKSClusterRoleArn:
