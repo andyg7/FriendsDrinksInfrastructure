@@ -22,14 +22,6 @@ Resources:
               - sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
-      Policies:
-        - PolicyName: EKSFullAccess
-          PolicyDocument:
-            Version: "2012-10-17"
-            Statement:
-              - Effect: Allow
-                Action: 'eks:*'
-                Resource: '*'
 
   EKSCluster:
     DependsOn: EKSClusterRole

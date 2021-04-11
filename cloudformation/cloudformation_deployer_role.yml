@@ -19,6 +19,14 @@ Resources:
         - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
         - arn:aws:iam::aws:policy/IAMFullAccess
         - arn:aws:iam::aws:policy/AmazonEC2FullAccess
+      Policies:
+        - PolicyName: EKSFullAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 'eks:*'
+                Resource: '*'
 
 Outputs:
   RoleArn:
