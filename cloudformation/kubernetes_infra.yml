@@ -29,7 +29,7 @@ Resources:
     Properties:
       Name: EKSCluster
       Version: '1.18'
-      RoleArn: !Ref EKSClusterRole
+      RoleArn: !GetAtt EKSClusterRole.Arn
       ResourcesVpcConfig:
         SecurityGroupIds:
           - Fn::ImportValue:
