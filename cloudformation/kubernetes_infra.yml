@@ -4,7 +4,7 @@ Description: 'Amazon EKS resources'
 
 
 Resources:
-  EksClusterRole:
+  EKSClusterRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -38,8 +38,11 @@ Resources:
 
 
 Outputs:
-  RoleArn:
+  EKSClusterRoleArn:
     Description: The role that Amazon EKS will use to create AWS resources for Kubernetes clusters
-    Value: !GetAtt EksClusterRole.Arn
+    Value: !GetAtt EKSClusterRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
+  WorkerNodeInstanceRole:
+    Description: The node instance role
+    Value: !GetAtt WorkerNodeInstanceRole.Arn
