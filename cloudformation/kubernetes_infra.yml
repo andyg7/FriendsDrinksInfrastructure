@@ -47,6 +47,8 @@ Resources:
       Name: EKSCluster
       Version: '1.19'
       RoleArn: !GetAtt EKSClusterRole.Arn
+      KubernetesNetworkConfig:
+        ServiceIpv4Cidr: '10.100.0.0/16'
       ResourcesVpcConfig:
         SecurityGroupIds:
           - Fn::ImportValue:
