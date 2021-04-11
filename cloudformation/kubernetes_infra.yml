@@ -78,7 +78,7 @@ Resources:
         Fn::Split:
           - ","
           - Fn::ImportValue:
-              Fn::Sub: "${VPCStackName}-SubnetIds"
+              Fn::Sub: "${VPCStackName}-PrivateSubnetIds"
 
 Outputs:
   EKSClusterRoleArn:
