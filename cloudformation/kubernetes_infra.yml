@@ -46,3 +46,15 @@ Outputs:
     Value: !GetAtt EKSClusterRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
+
+  EKSClusterName:
+    Description: EKS cluster name
+    Value: !Ref EKSCluster
+    Export:
+      Name: !Sub "${AWS::StackName}-EKSClusterName"
+
+  EKSClusterEndpoint:
+    Description: API server endpoint
+    Value: !GetAtt EKSCluster.Endpoint
+    Export:
+      Name: !Sub "${AWS::StackName}-EKSClusterEndpoint"
