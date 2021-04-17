@@ -27,6 +27,13 @@ Resources:
               - Effect: Allow
                 Action: 'eks:*'
                 Resource: '*'
+        - PolicyName: LambdaFullAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 'lambda:*'
+                Resource: '*'
 
 Outputs:
   RoleArn:
