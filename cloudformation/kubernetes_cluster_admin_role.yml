@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Amazon CloudFormation deployer role resources'
 
 Resources:
-  CloudFormationDeployerRole:
+  KubernetesClusterAdminRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -13,6 +13,7 @@ Resources:
             Principal:
               AWS:
                 - !Sub 'arn:aws:iam::${AWS::AccountId}:user/CloudFormationDeployerUser'
+                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/KubernetesManifestDeployerUser'
             Action:
               - sts:AssumeRole
       ManagedPolicyArns:
@@ -38,6 +39,6 @@ Resources:
 Outputs:
   RoleArn:
     Description: The role used to deploy all other CloudFormation
-    Value: !GetAtt CloudFormationDeployerRole.Arn
+    Value: !GetAtt KubernetesClusterAdminRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
