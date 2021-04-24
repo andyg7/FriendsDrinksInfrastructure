@@ -57,7 +57,6 @@ jobs:
         - export CF_KEY_PRFIX=$(cat cfkeyprefix)
         - cat cloudformation/cloudformation_template.yml
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_template.yml
-        - aws s3 cp cloudformation/$CF_KEY_PREFIX/cloudformation_template.yml $CF_BUCKET
         - cat cloudformation/vpc.yml
         - aws cloudformation validate-template --template-body file://cloudformation/vpc.yml
         - aws s3 cp cloudformation/$CF_KEY_PREFIX/vpc.yml $CF_BUCKET
