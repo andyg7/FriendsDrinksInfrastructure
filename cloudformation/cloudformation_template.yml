@@ -30,4 +30,4 @@ Resources:
         VPCStackName:
           Fn::GetAtt:
             - VPCStack
-            - Outputs.StackName
+            - Outputs.VPCStackName
