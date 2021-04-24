@@ -274,7 +274,7 @@ Resources:
 Outputs:
   VPCStackName:
     Description: Name of this stack
-    Value: "${AWS::StackName}"
+    Value: !Sub "${AWS::StackName}"
     Export:
       Name: VPCStackName
 
