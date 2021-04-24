@@ -6,7 +6,7 @@ Resources:
   CloudFormationNestedStackTemplatesBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName:
+      CloudFormationTemplatesBucketName:
         Fn::Join:
           - "-"
           - - "cf-templates"
@@ -61,8 +61,8 @@ Outputs:
     Value: !GetAtt KubernetesClusterAdminRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
-  BucketName:
+  CloudFormationTemplatesBucketName:
     Description: The bucket for CloudFormation templates
     Value: !Ref CloudFormationNestedStackTemplatesBucket
     Export:
-      Name: !Sub "${AWS::StackName}-BucketName"
+      Name: !Sub "${AWS::StackName}-CloudFormationTemplatesBucketName"

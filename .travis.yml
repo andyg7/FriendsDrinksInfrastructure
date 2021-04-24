@@ -24,14 +24,14 @@ jobs:
         - aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
         - aws cloudformation deploy --template-file cloudformation/bootstrap_resources.yml --stack-name BootstrapResources --capabilities CAPABILITY_IAM
         - aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-RoleArn") | .Value' > rolearn
-        - aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-BucketName") | .Value' > bucketname
+        - aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-CloudFormationTemplatesBucketName") | .Value' > cfbucketname
       workspaces:
         create:
           name: ws1
           paths:
             - rolearn
-            - bucketname
-    - stage: Deploy Kubernetes VPC infrastructure
+            - cfbucketname
+    - stage: Validate templates and upload to S3
       workspaces:
         use: ws1
       env:
@@ -51,10 +51,17 @@ jobs:
         - export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
         - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
+        - export CF_BUCKET=$(cat cfbucketname)
+        - cat cloudformation/cloudformation_template.yml
+        - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_template.yml
+        - aws s3 cp cloudformation/cloudformation_template.yml $CF_BUCKET
         - cat cloudformation/vpc.yml
         - aws cloudformation validate-template --template-body file://cloudformation/vpc.yml
-        - aws cloudformation deploy --template-file cloudformation/vpc.yml --stack-name VPCInfrastructure --capabilities CAPABILITY_IAM
-    - stage: Deploy Kubernetes infrastructure
+        - aws s3 cp cloudformation/vpc.yml $CF_BUCKET
+        - cat cloudformation/kubernetes_infrastructure.yml
+        - aws cloudformation validate-template --template-body file://cloudformation/kubernetes_infrastructure.yml
+        - aws s3 cp cloudformation/kubernetes_infrastructure.yml $CF_BUCKET
+    - stage: Deploy infrastructure
       workspaces:
         use: ws1
       env:
@@ -74,6 +81,5 @@ jobs:
         - export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
         - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
-        - cat cloudformation/kubernetes_infra.yml
-        - aws cloudformation validate-template --template-body file://cloudformation/kubernetes_infra.yml
-        - travis_wait 30 aws cloudformation deploy --template-file cloudformation/kubernetes_infra.yml --stack-name KubernetesInfrastructure --capabilities CAPABILITY_IAM --parameter-overrides VPCStackName=VPCInfrastructure
+        - cat cloudformation/kubernetes_infrastructure.yml
+        - travis_wait 30 aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesTopLevelStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$(cat cfbucketname) VPCInfrastructureKey=vpc.yml KubernetesInfrastructureKey=kubernetes_infrastructure.yml

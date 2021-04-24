@@ -1,0 +1,28 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Amazon EKS resources'
+
+Parameters:
+  CloudFormationTemplatesBucketName:
+    Type: String
+    Description: Bucket name for nested CloudFormation stack templates
+  VPCInfrastructureKey:
+    Type: String
+    Description: Key for VPC CloudFormation file
+  KubernetesInfrastructureKey:
+    Type: String
+    Description: Key for Kubernetes infra file
+
+Resources:
+  VPCStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        !Sub "${CloudFormationTemplatesBucketName}/{VPCInfrastructureKey}"
+
+  KubernetesInfraStack:
+    DependsOn: VPCStack
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL:
+        !Sub "${CloudFormationTemplatesBucketName}/{KubernetesInfrastructureKey}"
