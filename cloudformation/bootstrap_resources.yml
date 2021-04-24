@@ -6,7 +6,7 @@ Resources:
   CloudFormationNestedStackTemplatesBucket:
     Type: AWS::S3::Bucket
     Properties:
-      CloudFormationTemplatesBucketName:
+      BucketName:
         Fn::Join:
           - "-"
           - - "cf-templates"
