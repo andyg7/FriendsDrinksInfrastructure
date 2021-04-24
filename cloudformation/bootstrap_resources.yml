@@ -67,3 +67,8 @@ Outputs:
     Value: !Ref CloudFormationNestedStackTemplatesBucket
     Export:
       Name: !Sub "${AWS::StackName}-CloudFormationTemplatesBucketName"
+  CloudFormationTemplatesBucketDomainName:
+    Description: The bucket domain name for CloudFormation templates
+    Value: !GetAtt CloudFormationNestedStackTemplatesBucket.DomainName
+    Export:
+      Name: !Sub "${AWS::StackName}-CloudFormationTemplatesBucketDomainName"
