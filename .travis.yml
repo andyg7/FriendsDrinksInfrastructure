@@ -82,4 +82,4 @@ jobs:
         - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
         - export CF_BUCKET=s3://$(cat cfbucketname)
-        - travis_wait 30 aws cloudformation deploy --template-file $CF_BUCKET/cloudformation_template.yml --stack-name KubernetesTopLevelStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$CF_BUCKET VPCInfrastructureKey=vpc.yml KubernetesInfrastructureKey=kubernetes_infrastructure.yml
+        - travis_wait 30 aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesTopLevelStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$CF_BUCKET VPCInfrastructureKey=vpc.yml KubernetesInfrastructureKey=kubernetes_infrastructure.yml
