@@ -26,3 +26,6 @@ Resources:
     Properties:
       TemplateURL:
         !Sub "${CloudFormationTemplatesBucketName}/${KubernetesInfrastructureKey}"
+      Parameters:
+        VPCStackName:
+          Fn::ImportValue: !Sub "${VPCStackName}"

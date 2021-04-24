@@ -272,6 +272,12 @@ Resources:
       VpcId: !Ref VPC
 
 Outputs:
+  VPCStackName:
+    Description: Name of this stack
+    Value: "${AWS::StackName}"
+    Export:
+      Name: VPCStackName
+
   SubnetIds:
     Description: Subnets IDs in the VPC
     Value: !Join [ ",", [ !Ref PublicSubnet01, !Ref PublicSubnet02, !Ref PrivateSubnet01, !Ref PrivateSubnet02 ] ]
