@@ -3,6 +3,25 @@ AWSTemplateFormatVersion: '2010-09-09'
 Description: 'Amazon CloudFormation deployer role resources'
 
 Resources:
+  CloudFormationNestedStackTemplatesBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName:
+        Fn::Join:
+          - "-"
+          - "cf-templates"
+          - !Ref "AWS::Region"
+          - !Ref "AWS::AccountId"
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+         -  ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
   KubernetesClusterAdminRole:
     Type: AWS::IAM::Role
     Properties:
@@ -42,3 +61,8 @@ Outputs:
     Value: !GetAtt KubernetesClusterAdminRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
+  BucketName:
+    Description: The bucket for CloudFormation templates
+    Value: !Ref CloudFormationNestedStackTemplatesBucket
+    Export:
+      Name: !Sub "${AWS::StackName}-BucketName"

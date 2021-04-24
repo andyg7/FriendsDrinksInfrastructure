@@ -20,15 +20,17 @@ jobs:
         - sudo ./aws/install
         - aws --version
       script:
-        - cat cloudformation/kubernetes_cluster_admin_role.yml
-        - aws cloudformation validate-template --template-body file://cloudformation/kubernetes_cluster_admin_role.yml
-        - aws cloudformation deploy --template-file cloudformation/kubernetes_cluster_admin_role.yml --stack-name KubernetesClusterAdminRole --capabilities CAPABILITY_IAM
-        - aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="KubernetesClusterAdminRole-RoleArn") | .Value' > rolearn
+        - cat cloudformation/bootstrap_resources.yml
+        - aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
+        - aws cloudformation deploy --template-file cloudformation/bootstrap_resources.yml --stack-name BootstrapResources --capabilities CAPABILITY_IAM
+        - aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-RoleArn") | .Value' > rolearn
+        - aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-BucketName") | .Value' > bucketname
       workspaces:
         create:
           name: ws1
           paths:
             - rolearn
+            - bucketname
     - stage: Deploy Kubernetes VPC infrastructure
       workspaces:
         use: ws1
