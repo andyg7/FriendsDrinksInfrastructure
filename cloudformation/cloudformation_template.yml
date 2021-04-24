@@ -28,4 +28,6 @@ Resources:
         !Sub "${CloudFormationTemplatesBucketName}/${KubernetesInfrastructureKey}"
       Parameters:
         VPCStackName:
-          Fn::ImportValue: VPCStackName
+          Fn::GetAtt:
+            - VPCStack
+            - Outputs.StackName
