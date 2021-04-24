@@ -51,7 +51,7 @@ jobs:
         - export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
         - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
-        - export CF_BUCKET=$(cat cfbucketname)
+        - export CF_BUCKET=s3://$(cat cfbucketname)
         - cat cloudformation/cloudformation_template.yml
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_template.yml
         - aws s3 cp cloudformation/cloudformation_template.yml $CF_BUCKET
@@ -81,4 +81,5 @@ jobs:
         - export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
         - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
-        - travis_wait 30 aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesTopLevelStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$(cat cfbucketname) VPCInfrastructureKey=vpc.yml KubernetesInfrastructureKey=kubernetes_infrastructure.yml
+        - export CF_BUCKET=s3://$(cat cfbucketname)
+        - travis_wait 30 aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesTopLevelStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$CF_BUCKET VPCInfrastructureKey=vpc.yml KubernetesInfrastructureKey=kubernetes_infrastructure.yml
