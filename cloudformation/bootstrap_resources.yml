@@ -9,9 +9,9 @@ Resources:
       BucketName:
         Fn::Join:
           - "-"
-          - "cf-templates"
-          - !Ref "AWS::Region"
-          - !Ref "AWS::AccountId"
+          - - "cf-templates"
+            - !Ref "AWS::Region"
+            - !Ref "AWS::AccountId"
       BucketEncryption:
         ServerSideEncryptionConfiguration:
          -  ServerSideEncryptionByDefault:
