@@ -44,7 +44,7 @@ jobs:
         - aws --version
       script:
         - export AWS_ROLE_ARN=$(cat rolearn)
-        - export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name VPCInfrastructureSession | jq -r '.Credentials') >/dev/null 2>&1
+        - export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name ValidateAndS3UploadTemplatesSession | jq -r '.Credentials') >/dev/null 2>&1
         - export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
         - export AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey') >/dev/null 2>&1
         - export AWS_SESSION_TOKEN_STS=$(echo $STS_CREDENTIALS | jq -r '.SessionToken') >/dev/null 2>&1
