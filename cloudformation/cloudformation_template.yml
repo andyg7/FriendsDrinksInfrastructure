@@ -28,4 +28,4 @@ Resources:
         !Sub "${CloudFormationTemplatesBucketName}/${KubernetesInfrastructureKey}"
       Parameters:
         VPCStackName:
-          Fn::ImportValue: !Sub "${VPCStackName}"
+          Fn::ImportValue: VPCStackName
