@@ -56,7 +56,7 @@ jobs:
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
         - export CF_BUCKET=s3://$(cat cfbucketname)
         - cat cfkeyprefix
-        - export CF_KEY_PRFIX=$(cat cfkeyprefix)
+        - export CF_KEY_PREFIX=$(cat cfkeyprefix)
         - echo $CF_KEY_PREFIX
         - cat cloudformation/cloudformation_template.yml
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_template.yml
