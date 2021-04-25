@@ -85,5 +85,5 @@ jobs:
         - export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
         - export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
         - export CF_URL=https://$(cat cfbucketname).s3.amazonaws.com
-        - export CF_KEY_PRFIX=$(cat cfkeyprefix)
+        - export CF_KEY_PREFIX=$(cat cfkeyprefix)
         - travis_wait 30 aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$CF_URL VPCInfrastructureKey=$CF_KEY_PREFIX/vpc.yml KubernetesInfrastructureKey=$CF_KEY_PREFIX/kubernetes_infrastructure.yml
