@@ -10,7 +10,7 @@ env:
 
 jobs:
   include:
-    - stage: Deploy CloudFormation role
+    - stage: Create bootstrap resources
       env:
         - secure: "NTDkW1owt0tIXbd2BoLjcUHunQYlsD+NMW3zVASAw40KI2EavoI4ZhGg9UOe+0Aym/LaWMA7E0HNfMBNiLHochBEoxcL8rWRvCLeS1O0nNuTSx/wG/2L5AMoTkZhQ3ibfovJAN/mgkrtRk8hC/xHi5H/GxZzwEQlCT7vK2MH/xNJfStwLvcHnyYZlPcAML9b1xogETsoJyPPc9Sw1nVnJrUuT1plk3Jw/CTTYyD4JFt6tuNXBrkKpI4viAO7Kf2rdD6JQAUKw4IgRDzcoLQFIF0SSn3xQ/PQZrHF/u0e3gU+FBK/7L9vEa0IukopLJvqng12JGZtmUos1OUuKXnRcEyllshWmYz3SPPfXcV17HW741R8EMdaJ9l8ld+kWvvNArC9WGg054gTAkxf1Qz+P+9IKCE/fAjhz7AZa408dkmmnfQwr71WmmAaKHslWqru5AUOfcPa3tt+uQc7Jqn3A44m1AKvqs3yEkcGmfYy25gtKGnridCJ9sfF84sw7c4me8Nxbx+IUUtA+93txJZhWfLuxHt2Q0VUAW6T0q1MXPcaMefvz9TtmuPk5sT63brXAUlOiggjlUxyGMZtAOqAhfZYvXd713MKjkRK4iqz1Y+gMeJNN3p/TKLUwWyh/mfZVZz0yLoFOXB5aCpBM+x4+qvVKjQIGlfJHVj6mtkJoJc="
         - secure: "IYw7MGxZ06gDDxzk+LeVPUWms2XFEttQf67Wbph7VtmGJWMUzmTZxOyfncrUA1W6fJHAD1DTj4UQkSjcwGeVASCXCpGF4WaElozXS+dW1JcKpMVvDfasDiwoK+MCsPbqF0HuHhbhWqyS3/v+Pst/Qi9xOIgAcDRe6NWv8FYOEuqfvPcszWD43U2f9b7yCruUcz2DOG460u7t/PQd81jtHNeC3c/+UsPtZ1wDwS1zGJCTs2PJ3oYGH1b3lGqHoEojTIqJMLqgfCs5wv1LfAFop+zMfDwWx01bRRcF2lSopHBFkx/eart93GIeIG7ZvDAuglc7dfGoGiF7vHoabfZsVBvjCdTdNZljABUSHvAKZUvbcaTkQUJe2nI+gpXjFyCU2NafdmJWVbjGDVL9kQmr6XOexEPtGyI740MDPHiwsicKNg3zDAZb0xA3hCnL82wJiCvRWxGQHpUF3FLFJ6GwcJPAkLrwt+KWfMrVeUow2Lgi21WDmv8suNiNHZ9S7IdbMzgFa7k4+Fok4G5tM6Pfcuf9eBIDwO3DLmXTn7rPBEMtJk77SvJRhlV9WgLiU7NSgalUhu4TM5pF73kiTpUyEYb2wmIlejiP9Jwqe2guSRNEvfpq+01Xxhtxaot50RQ82v27cMKLmt03p2MwCQyryHJskl+LO6d0+3PpRbibOac="
@@ -34,7 +34,7 @@ jobs:
             - rolearn
             - cfbucketname
             - cfkeyprefix
-    - stage: Validate templates and upload to S3
+    - stage: Validate CloudFormation templates and upload them to S3
       workspaces:
         use: ws1
       env:
@@ -64,7 +64,7 @@ jobs:
         - cat cloudformation/kubernetes_infrastructure.yml
         - aws cloudformation validate-template --template-body file://cloudformation/kubernetes_infrastructure.yml
         - aws s3 cp cloudformation/kubernetes_infrastructure.yml $CF_BUCKET/$CF_KEY_PREFIX/
-    - stage: Deploy infrastructure
+    - stage: Deploy CloudFormation infrastructure
       workspaces:
         use: ws1
       env:
