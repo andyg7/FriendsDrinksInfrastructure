@@ -60,10 +60,10 @@ jobs:
         - aws cloudformation validate-template --template-body file://cloudformation/cloudformation_template.yml
         - cat cloudformation/vpc.yml
         - aws cloudformation validate-template --template-body file://cloudformation/vpc.yml
-        - aws s3 cp cloudformation/$CF_KEY_PREFIX/vpc.yml $CF_BUCKET
+        - aws s3 cp cloudformation/vpc.yml $CF_BUCKET/$CF_KEY_PREFIX
         - cat cloudformation/kubernetes_infrastructure.yml
         - aws cloudformation validate-template --template-body file://cloudformation/kubernetes_infrastructure.yml
-        - aws s3 cp cloudformation/$CF_KEY_PREFIX/kubernetes_infrastructure.yml $CF_BUCKET
+        - aws s3 cp cloudformation/kubernetes_infrastructure.yml $CF_BUCKET/$CF_KEY_PREFIX
     - stage: Deploy infrastructure
       workspaces:
         use: ws1
