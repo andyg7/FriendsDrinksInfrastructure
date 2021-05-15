@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-set -e
+set -eu
+
+region=$1
 
 aws iam create-user --user-name CloudFormationDeployerUser
 access_key=$(mktemp)
@@ -9,8 +11,10 @@ aws iam create-access-key --user-name CloudFormationDeployerUser | jq -r '.Acces
 
 cat $access_key
 
-export AWS_ACCESS_KEY_ID=$(jq -r '.AccessKeyId' "$access_key")
-export AWS_SECRET_ACCESS_KEY=$(jq -r '.SecretAccessKey' "$access_key")
+AWS_ACCESS_KEY_ID=$(jq -r '.AccessKeyId' "$access_key")
+AWS_SECRET_ACCESS_KEY=$(jq -r '.SecretAccessKey' "$access_key")
+
+aws secretsmanager --region $region create-secret --secret-name CloudFormationDeployerUserCredentials --secret-string "{\"AWS_ACCESS_KEY_ID\": \"$AWS_ACCESS_KEY_ID\", \"AWS_SECRET_ACCESS_KEY\":\"$AWS_SECRET_ACCESS_KEY\"}"
 
 rm -rf $access_key
 
