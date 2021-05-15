@@ -24,5 +24,11 @@ echo "New access key $new_access_key"
 
 aws secretsmanager --region us-east-1 update-secret --secret-id CloudFormationDeployerUserCredentials --secret-string "$new_access_key"
 
+# Save creds in semaphore
+export AWS_ACCESS_KEY_ID=$(echo $new_access_key | jq -r '.AccessKeyId')
+export AWS_SECRET_ACCESS_KEY=$(echo $new_access_key | jq -r '.SecretAccessKey')
+echo $AWS_ACCESS_KEY_ID
+echo $AWS_SECRET_ACCESS_KEY
+
 travis encrypt AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
 travis encrypt AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
