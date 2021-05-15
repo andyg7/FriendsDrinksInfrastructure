@@ -42,5 +42,5 @@ then
       exit 1
 fi
 
-travis encrypt AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
-travis encrypt AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
+travis encrypt -r andyg7/FriendsDrinksInfrastructure AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
+travis encrypt -r andyg7/FriendsDrinksInfrastructure AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
