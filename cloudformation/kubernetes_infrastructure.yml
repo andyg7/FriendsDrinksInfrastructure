@@ -426,3 +426,9 @@ Outputs:
     Value: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURL
     Export:
       Name: !Sub "${AWS::StackName}-EKSOIDCIssuerURL"
+
+  EKSOIDCIssuerURLWithoutProtocol:
+    Description: OpenID connect URL
+    Value: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURLWithoutProtocol
+    Export:
+      Name: !Sub "${AWS::StackName}-EKSOIDCIssuerURLWithoutProtocol"
