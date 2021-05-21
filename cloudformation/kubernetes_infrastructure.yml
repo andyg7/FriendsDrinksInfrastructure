@@ -403,7 +403,7 @@ Resources:
               }
               ]
           }
-        - { OIDC_PPROVIDER: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURLWithoutProtocol }
+        - { OIDC_PROVIDER: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURLWithoutProtocol }
       ManagedPolicyArns:
         - !Ref AmazonEKSLoadBalancerControllerPolicy
 
