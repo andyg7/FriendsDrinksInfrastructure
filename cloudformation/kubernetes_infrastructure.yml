@@ -107,7 +107,7 @@ Resources:
     Type: 'AWS::EKS::Cluster'
     Properties:
       Name: EKSCluster
-      Version: '1.19'
+      Version: '1.20'
       RoleArn: !GetAtt EKSClusterRole.Arn
       KubernetesNetworkConfig:
         ServiceIpv4Cidr: '10.100.0.0/16'
