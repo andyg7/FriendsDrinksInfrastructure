@@ -439,4 +439,6 @@ Outputs:
   AmazonEKSLoadBalancerControllerRole:
     Description: The load balancer role
     Value: !GetAtt AmazonEKSLoadBalancerControllerRole.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-AmazonEKSLoadBalancerControllerRole"
 
