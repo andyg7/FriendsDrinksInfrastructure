@@ -384,7 +384,7 @@ Resources:
   AmazonEKSLoadBalancerControllerRole:
     Type: AWS::IAM::Role
     Properties:
-      AssumeRolePolicyDocument: Sub!
+      AssumeRolePolicyDocument: !Sub
         - |
             Version: '2012-10-17'
             Statement:
