@@ -146,6 +146,7 @@ Resources:
                 resp = iam.create_open_id_connect_provider(Url=oidc_issuer_url,ClientIDList=['sts.amazonaws.com'],ThumbprintList=[issuer_thumbprint])
                 provider_arn = resp['OpenIDConnectProviderArn']
                 data["Reason"] = "Provider with ARN " + provider_arn + " created"
+                data["OIDCIssuerURL"] = oidc_issuer_url
                 cfnresponse.send(event, context, cfnresponse.SUCCESS, data, provider_arn)
               elif event['RequestType'] == 'Delete':
                 provider_arn = event["PhysicalResourceId"]
@@ -358,6 +359,6 @@ Outputs:
 
   EKSOIDCIssuerURL:
     Description: OpenID connect URL
-    Value: !GetAtt EKSCluster.EKS.OIDCIssuerURL
+    Value: !GetAtt ClusterOIDCProvider.OIDCIssuerURL
     Export:
       Name: !Sub "${AWS::StackName}-EKSOIDCIssuerURL"
