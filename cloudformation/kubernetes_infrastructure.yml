@@ -382,9 +382,6 @@ Resources:
             Resource: "*"
 
   AmazonEKSLoadBalancerControllerRole:
-    DependsOn:
-      - ClusterOIDCProviderFunction
-      - AmazonEKSLoadBalancerControllerPolicy
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -392,7 +389,9 @@ Resources:
         Statement:
           - Effect: Allow
             Principal:
-              Federated: !Sub 'arn:aws:iam::${AWS::AccountId}:oidc-provider/<OIDC_PROVIDER>'
+              Federated: !Sub
+                 - 'arn:aws:iam::${AWS::AccountId}:oidc-provider/${OIDCProvider}'
+                 - { OIDCProvider: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURLWithoutProtocol }
             Action:
               - sts:AssumeRoleWithWebIdentity
       ManagedPolicyArns:
