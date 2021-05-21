@@ -429,3 +429,7 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}-EKSOIDCIssuerURL"
 
+  AmazonEKSLoadBalancerControllerRole:
+    Description: The load balancer role
+    Value: !GetAtt AmazonEKSLoadBalancerControllerRole.Arn
+
