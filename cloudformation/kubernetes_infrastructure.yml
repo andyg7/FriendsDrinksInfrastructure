@@ -384,16 +384,19 @@ Resources:
   AmazonEKSLoadBalancerControllerRole:
     Type: AWS::IAM::Role
     Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              Federated: !Sub
-                 - 'arn:aws:iam::${AWS::AccountId}:oidc-provider/${OIDCProvider}'
-                 - { OIDCProvider: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURLWithoutProtocol }
-            Action:
-              - sts:AssumeRoleWithWebIdentity
+      AssumeRolePolicyDocument: Sub!
+        - |
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Principal:
+                  Federated: 'arn:aws:iam::${AWS::AccountId}:oidc-provider/${OIDCProvider}'
+                Action:
+                  - sts:AssumeRoleWithWebIdentity
+                Condition:
+                  StringEquals:
+                    '${OIDCProvider}:sub': "system:serviceaccount:kube-system:aws-load-balancer-controller"
+        - { OIDCProvider: !GetAtt ClusterOIDCProviderInfo.OIDCIssuerURLWithoutProtocol }
       ManagedPolicyArns:
         - !Ref AmazonEKSLoadBalancerControllerPolicy
 
