@@ -168,12 +168,12 @@ Resources:
             data = {}
             try:
               if event['RequestType'] == 'Delete':
-                cfnresponse.send(event, context, cfnresponse.SUCCESS, data, provider_arn)
+                cfnresponse.send(event, context, cfnresponse.SUCCESS, data)
               eks_describe_cluster_resp = eks.describe_cluster(name=event['ResourceProperties']['EKSClusterName'])
               oidc_issuer_url = eks_describe_cluster_resp['cluster']['identity']['oidc']['issuer']
               data["OIDCIssuerURL"] = oidc_issuer_url
               data["OIDCIssuerURLWithoutProtocol"] = oidc_issuer_url.replace("https://","")
-              cfnresponse.send(event, context, cfnresponse.SUCCESS, data, provider_arn)
+              cfnresponse.send(event, context, cfnresponse.SUCCESS, data)
             except Exception as e:
               data["Reason"] = "Cannot " + event['RequestType'] + " Provider" + str(e)
               cfnresponse.send(event, context, cfnresponse.FAILED, data, "")
