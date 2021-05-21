@@ -201,3 +201,9 @@ Outputs:
     Value: !GetAtt EKSCluster.Endpoint
     Export:
       Name: !Sub "${AWS::StackName}-EKSClusterEndpoint"
+
+  EKSOIDCIssuerURL:
+    Description: OpenID connect URL
+    Value: !GetAtt EKSCluster.EKS.OIDCIssuerURL
+    Export:
+      Name: !Sub "${AWS::StackName}-EKSOIDCIssuerURL"
