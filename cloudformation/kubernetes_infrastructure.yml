@@ -147,6 +147,7 @@ Resources:
                 provider_arn = resp['OpenIDConnectProviderArn']
                 data["Reason"] = "Provider with ARN " + provider_arn + " created"
                 data["OIDCIssuerURL"] = oidc_issuer_url
+                data["OIDCIssuerURLWithoutProtocol"] = oidc_issuer_url.replace("https://","")
                 cfnresponse.send(event, context, cfnresponse.SUCCESS, data, provider_arn)
               elif event['RequestType'] == 'Delete':
                 provider_arn = event["PhysicalResourceId"]
