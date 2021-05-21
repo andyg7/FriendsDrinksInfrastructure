@@ -163,6 +163,22 @@ Resources:
               data["Reason"] = "Cannot " + event['RequestType'] + " Provider" + str(e)
               cfnresponse.send(event, context, cfnresponse.FAILED, data, "")
 
+  AmazonEKSLoadBalancerControllerRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !Sub 'arn:aws:iam::${AWS::AccountId}:oidc-provider/<OIDC_PROVIDER>'
+            Action:
+              - sts:AssumeRoleWithWebIdentity
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+
 Outputs:
   EKSClusterRoleArn:
     Description: The role that Amazon EKS will use to create AWS resources for Kubernetes clusters
