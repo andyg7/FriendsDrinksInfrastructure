@@ -392,7 +392,7 @@ Resources:
               {
                 "Effect": "Allow",
                 "Principal": {
-                  "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${OIDC_PROVIDER}"
+                  "Federated": "arn:aws:iam::${AWS::AccountId}:oidc-provider/${OIDC_PROVIDER}"
                 },
                 "Action": "sts:AssumeRoleWithWebIdentity",
                 "Condition": {
