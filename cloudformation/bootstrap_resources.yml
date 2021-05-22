@@ -80,6 +80,13 @@ Resources:
               - Effect: Allow
                 Action: 'cognito-identity:*'
                 Resource: '*'
+        - PolicyName: CognitoFullAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 'cognito-idp:*'
+                Resource: '*'
 
 Outputs:
   RoleArn:
