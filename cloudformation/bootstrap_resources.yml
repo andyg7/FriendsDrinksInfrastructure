@@ -83,10 +83,15 @@ Resources:
 
 Outputs:
   RoleArn:
-    Description: The role used to deploy all other CloudFormation
+    Description: The role used to deploy Kubernetes infrastructure.
     Value: !GetAtt KubernetesClusterAdminRole.Arn
     Export:
       Name: !Sub "${AWS::StackName}-RoleArn"
+  UserPoolRoleArn:
+    Description: The role used to deploy user pool infrastructure
+    Value: !GetAtt UserPoolRole.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-UserPoolRoleArn"
   CloudFormationTemplatesBucketName:
     Description: The bucket for CloudFormation templates
     Value: !Ref CloudFormationNestedStackTemplatesBucket
