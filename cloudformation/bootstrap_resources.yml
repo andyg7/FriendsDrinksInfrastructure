@@ -33,6 +33,7 @@ Resources:
               AWS:
                 - !Sub 'arn:aws:iam::${AWS::AccountId}:user/CloudFormationDeployerUser'
                 - !Sub 'arn:aws:iam::${AWS::AccountId}:user/KubernetesManifestDeployerUser'
+                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/FriendsDrinksUIDeployerUserV2'
             Action:
               - sts:AssumeRole
       ManagedPolicyArns:
