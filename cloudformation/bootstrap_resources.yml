@@ -33,6 +33,7 @@ Resources:
               AWS:
                 - !Sub 'arn:aws:iam::${AWS::AccountId}:user/CloudFormationDeployerUser'
                 - !Sub 'arn:aws:iam::${AWS::AccountId}:user/KubernetesManifestDeployerUser'
+                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/FriendsDrinksUIDeployerUserV2'
             Action:
               - sts:AssumeRole
       ManagedPolicyArns:
@@ -54,6 +55,30 @@ Resources:
             Statement:
               - Effect: Allow
                 Action: 'lambda:*'
+                Resource: '*'
+
+  UserPoolRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS:
+                - !Sub 'arn:aws:iam::${AWS::AccountId}:user/FriendsDrinksUIDeployerUserV2'
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
+        - arn:aws:iam::aws:policy/IAMFullAccess
+      Policies:
+        - PolicyName: CognitoFullAccess
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 'cognito-identity:*'
                 Resource: '*'
 
 Outputs:
