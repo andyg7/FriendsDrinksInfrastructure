@@ -73,14 +73,14 @@ Resources:
         - arn:aws:iam::aws:policy/AWSCloudFormationFullAccess
         - arn:aws:iam::aws:policy/IAMFullAccess
       Policies:
-        - PolicyName: CognitoFullAccess
+        - PolicyName: CognitoIdentityFullAccess
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
               - Effect: Allow
                 Action: 'cognito-identity:*'
                 Resource: '*'
-        - PolicyName: CognitoFullAccess
+        - PolicyName: CognitoIdpFullAccess
           PolicyDocument:
             Version: "2012-10-17"
             Statement:
