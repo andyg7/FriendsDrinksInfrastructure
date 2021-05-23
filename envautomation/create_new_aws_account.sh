@@ -12,6 +12,9 @@ echo "Account name is $ACCOUNT_NAME"
 if [[ "$STAGE" == "beta" ]]
 then
   echo "$STAGE is a valid stage"
+elif [[ "$STAGE" == "global" ]]
+then
+  echo "$STAGE is a valid stage"
 elif [[ "$STAGE" == "prod" ]]
 then
   echo "$STAGE is a valid stage"

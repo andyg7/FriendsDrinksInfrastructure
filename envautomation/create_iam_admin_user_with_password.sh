@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-set -e
+set -eu
 
 PASSWORD=$1
 USER_NAME=AdminUser
