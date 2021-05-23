@@ -2,6 +2,8 @@
 
 set -eu
 
+region=$1
+
 while true; do
   aws iam list-access-keys --user-name CloudFormationDeployerUser --max-items 1 --query 'AccessKeyMetadata[0].AccessKeyId' --output text
   access_key_id=$(aws iam list-access-keys --user-name CloudFormationDeployerUser --max-items 1 --query 'AccessKeyMetadata[0].AccessKeyId' --output text | grep -v 'None' || true)
@@ -22,7 +24,7 @@ echo 'Done deleting access keys'
 new_access_key=$(aws iam create-access-key --user-name CloudFormationDeployerUser | jq -r '.AccessKey')
 echo "New access key $new_access_key"
 
-aws secretsmanager --region us-east-1 update-secret --secret-id CloudFormationDeployerUserCredentials --secret-string "$new_access_key"
+aws secretsmanager --region $region update-secret --secret-id CloudFormationDeployerUserCredentials --secret-string "$new_access_key"
 
 export AWS_ACCESS_KEY_ID=$(echo $new_access_key | jq -r '.AccessKeyId')
 export AWS_SECRET_ACCESS_KEY=$(echo $new_access_key | jq -r '.SecretAccessKey')
