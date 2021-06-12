@@ -12,7 +12,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: cat cloudformation/bootstrap_resources.yml
-      - run: aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
+      - name: Validates CloudFormation template
+        env:
+          testfoo: ${{ secrets.BARNAME }}
+        run: echo $testfoo
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
