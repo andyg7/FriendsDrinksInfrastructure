@@ -14,8 +14,9 @@ jobs:
       - run: cat cloudformation/bootstrap_resources.yml
       - name: Validates CloudFormation template
         env:
-          testfoo: ${{ secrets.BARNAME }}
-        run: echo $testfoo
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
