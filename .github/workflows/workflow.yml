@@ -18,7 +18,15 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
         run: aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
-      - name: List files in the repository
+      - name: Deploys CloudFormation template
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: us-east-1
         run: |
-          ls ${{ github.workspace }}
+         aws cloudformation deploy --template-file cloudformation/bootstrap_resources.yml --stack-name BootstrapResources --capabilities CAPABILITY_IAM
+         aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-RoleArn") | .Value' > rolearn
+         aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-CloudFormationTemplatesBucketName") | .Value' > cfbucketname
+         date -u +"%Y/%m/%d/%H/%M/%S" > cfkeyprefix
+         cat cfkeyprefix
       - run: echo "🍏 This job's status is ${{ job.status }}."
