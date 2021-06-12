@@ -3,6 +3,7 @@ on: [push]
 jobs:
   Deploy-bootstrap-resources:
     runs-on: ubuntu-latest
+    environment: BootstrapEnv
     steps:
       - run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       - run: unzip awscliv2.zip
@@ -11,7 +12,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: cat cloudformation/bootstrap_resources.yml
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+      - run: aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
