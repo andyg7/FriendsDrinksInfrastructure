@@ -90,3 +90,45 @@ jobs:
           cat cloudformation/kubernetes_infrastructure.yml
           aws cloudformation validate-template --template-body file://cloudformation/kubernetes_infrastructure.yml
           aws s3 cp cloudformation/kubernetes_infrastructure.yml $CF_BUCKET/$CF_KEY_PREFIX/
+  Deploy-infrastructure:
+    runs-on: ubuntu-latest
+    needs: Validate-template-and-upload-to-s3
+    environment: InfrastructureEnv
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Download key prefix
+        uses: actions/download-artifact@v2
+        with:
+          name: cfkeyprefix
+      - name: Download bucket name
+        uses: actions/download-artifact@v2
+        with:
+          name: cfbucketname
+      - name: Download role ARN
+        uses: actions/download-artifact@v2
+        with:
+          name: rolearn
+      - run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      - run: unzip awscliv2.zip
+      - run: sudo ./aws/install --update
+      - run: aws --version
+      - run: ls ${{ github.workspace }}
+      - name: Deploy infra
+        run: |
+          export AWS_ROLE_ARN=$(cat rolearn.txt)
+          export AWS_ROLE_ARN=$(cat rolearn)
+          export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name KubernetesStackSession  | jq -r '.Credentials') >/dev/null 2>&1
+          export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
+          export AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey') >/dev/null 2>&1
+          export AWS_SESSION_TOKEN_STS=$(echo $STS_CREDENTIALS | jq -r '.SessionToken') >/dev/null 2>&1
+          export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
+          export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
+          export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
+          export CF_URL=https://$(cat cfbucketname).s3.amazonaws.com
+          export CF_KEY_PREFIX=$(cat cfkeyprefix)
+          aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$CF_URL VPCInfrastructureKey=$CF_KEY_PREFIX/vpc.yml KubernetesInfrastructureKey=$CF_KEY_PREFIX/kubernetes_infrastructure.yml
