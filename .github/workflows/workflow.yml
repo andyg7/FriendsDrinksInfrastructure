@@ -57,7 +57,7 @@ jobs:
       - name: Download bucket name
         uses: actions/download-artifact@v2
         with:
-          name: cfubucketname
+          name: cfbucketname
       - name: Download role ARN
         uses: actions/download-artifact@v2
         with:
@@ -68,7 +68,7 @@ jobs:
       - run: aws --version
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Deploys CloudFormation template
+      - name: Validates template and uploads to S3
         run: |
           aws cloudformation deploy --template-file cloudformation/bootstrap_resources.yml --stack-name BootstrapResources --capabilities CAPABILITY_IAM
           export AWS_ROLE_ARN=$(cat rolearn.txt)
