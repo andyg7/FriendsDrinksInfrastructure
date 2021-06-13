@@ -73,7 +73,7 @@ jobs:
       - name: Validates template and uploads to S3
         run: |
           export AWS_ROLE_ARN=$(cat rolearn.txt)
-          export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name ValidateAndS3UploadTemplatesSession | jq -r '.Credentials') >/dev/null 2>&1      - run: echo "🍏 This job's status is ${{ job.status }}."
+          export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name ValidateAndS3UploadTemplatesSession | jq -r '.Credentials') >/dev/null 2>&1
           export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
           export AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey') >/dev/null 2>&1
           export AWS_SESSION_TOKEN_STS=$(echo $STS_CREDENTIALS | jq -r '.SessionToken') >/dev/null 2>&1
