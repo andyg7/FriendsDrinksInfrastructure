@@ -120,7 +120,6 @@ jobs:
       - name: Deploy infra
         run: |
           export AWS_ROLE_ARN=$(cat rolearn.txt)
-          export AWS_ROLE_ARN=$(cat rolearn)
           export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name KubernetesStackSession  | jq -r '.Credentials') >/dev/null 2>&1
           export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
           export AWS_SECRET_ACCESS_KEY_STS=$(echo $STS_CREDENTIALS | jq -r '.SecretAccessKey') >/dev/null 2>&1
@@ -128,6 +127,6 @@ jobs:
           export AWS_ACCESS_KEY_ID=$(echo $AWS_ACCESS_KEY_ID_STS) >/dev/null 2>&1
           export AWS_SECRET_ACCESS_KEY=$(echo $AWS_SECRET_ACCESS_KEY_STS) >/dev/null 2>&1
           export AWS_SESSION_TOKEN=$(echo $AWS_SESSION_TOKEN_STS) >/dev/null 2>&1
-          export CF_URL=https://$(cat cfbucketname).s3.amazonaws.com
-          export CF_KEY_PREFIX=$(cat cfkeyprefix)
+          export CF_URL=https://$(cat cfbucketname.txt).s3.amazonaws.com
+          export CF_KEY_PREFIX=$(cat cfkeyprefix.txt)
           aws cloudformation deploy --template-file cloudformation/cloudformation_template.yml --stack-name KubernetesStack --capabilities CAPABILITY_IAM --parameter-overrides CloudFormationTemplatesBucketName=$CF_URL VPCInfrastructureKey=$CF_KEY_PREFIX/vpc.yml KubernetesInfrastructureKey=$CF_KEY_PREFIX/kubernetes_infrastructure.yml
