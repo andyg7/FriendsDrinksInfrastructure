@@ -51,6 +51,8 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-east-1
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
       - name: Download key prefix
         uses: actions/download-artifact@v2
         with:
@@ -67,8 +69,6 @@ jobs:
       - run: unzip awscliv2.zip
       - run: sudo ./aws/install --update
       - run: aws --version
-      - name: Check out repository code
-        uses: actions/checkout@v2
       - run: ls ${{ github.workspace }}
       - name: Validates template and uploads to S3
         run: |
