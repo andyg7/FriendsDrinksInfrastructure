@@ -68,9 +68,9 @@ jobs:
       - run: aws --version
       - name: Check out repository code
         uses: actions/checkout@v2
+      - run: ls ${{ github.workspace }}
       - name: Validates template and uploads to S3
         run: |
-          ls ${{ github.workspace }}
           export AWS_ROLE_ARN=$(cat rolearn.txt)
           export STS_CREDENTIALS=$(aws sts assume-role --role-arn $AWS_ROLE_ARN --role-session-name ValidateAndS3UploadTemplatesSession | jq -r '.Credentials') >/dev/null 2>&1      - run: echo "🍏 This job's status is ${{ job.status }}."
           export AWS_ACCESS_KEY_ID_STS=$(echo $STS_CREDENTIALS | jq -r '.AccessKeyId') >/dev/null 2>&1
