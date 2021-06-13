@@ -4,6 +4,10 @@ jobs:
   Deploy-bootstrap-resources:
     runs-on: ubuntu-latest
     environment: BootstrapEnv
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
     steps:
       - run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
       - run: unzip awscliv2.zip
@@ -13,16 +17,8 @@ jobs:
         uses: actions/checkout@v2
       - run: cat cloudformation/bootstrap_resources.yml
       - name: Validates CloudFormation template
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
         run: aws cloudformation validate-template --template-body file://cloudformation/bootstrap_resources.yml
       - name: Deploys CloudFormation template
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: us-east-1
         run: |
          aws cloudformation deploy --template-file cloudformation/bootstrap_resources.yml --stack-name BootstrapResources --capabilities CAPABILITY_IAM
          aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-RoleArn") | .Value' > rolearn
