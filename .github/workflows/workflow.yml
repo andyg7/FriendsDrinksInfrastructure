@@ -22,6 +22,7 @@ jobs:
         run: |
          aws cloudformation deploy --template-file cloudformation/bootstrap_resources.yml --stack-name BootstrapResources --capabilities CAPABILITY_IAM
          aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-RoleArn") | .Value' > rolearn.txt
+         cat rolearn.txt
          aws cloudformation list-exports | jq -r '.Exports[] | select(.Name=="BootstrapResources-CloudFormationTemplatesBucketName") | .Value' > cfbucketname.txt
          date -u +"%Y/%m/%d/%H/%M/%S" > cfkeyprefix.txt
          cat cfkeyprefix.txt
