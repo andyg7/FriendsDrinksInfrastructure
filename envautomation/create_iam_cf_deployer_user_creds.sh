@@ -11,8 +11,8 @@ echo "New access key $new_access_key"
 
 aws secretsmanager --region $region create-secret --name CloudFormationDeployerUserCredentials --secret-string "$new_access_key"
 
-AWS_ACCESS_KEY_ID=$(jq -r '.AccessKeyId' "$new_access_key")
-AWS_SECRET_ACCESS_KEY=$(jq -r '.SecretAccessKey' "$new_access_key")
+AWS_ACCESS_KEY_ID=$(echo $"$new_access_key" | jq -r '.AccessKeyId')
+AWS_SECRET_ACCESS_KEY=$(echo $"$new_access_key" | jq -r '.SecretAccessKey')
 
 if [ -z "$AWS_ACCESS_KEY_ID" ]
 then
@@ -25,6 +25,3 @@ then
       echo "\$AWS_SECRET_ACCESS_KEY is empty"
       exit 1
 fi
-
-travis encrypt AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
-travis encrypt AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
