@@ -27,6 +27,3 @@ then
       echo "\$AWS_SECRET_ACCESS_KEY is empty"
       exit 1
 fi
-
-travis encrypt -r andyg7/FriendsDrinksInfrastructure --com AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
-travis encrypt -r andyg7/FriendsDrinksInfrastructure --com AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"

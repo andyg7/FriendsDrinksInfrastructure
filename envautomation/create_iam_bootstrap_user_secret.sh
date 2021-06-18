@@ -20,6 +20,3 @@ then
 fi
 
 aws secretsmanager --region $region create-secret --name BootstrapUserCredentials --secret-string "{\"AWS_ACCESS_KEY_ID\": \"$AWS_ACCESS_KEY_ID\", \"AWS_SECRET_ACCESS_KEY\":\"$AWS_SECRET_ACCESS_KEY\"}"
-
-travis encrypt AWS_ACCESS_KEY_ID="$AWS_ACCESS_KEY_ID"
-travis encrypt AWS_SECRET_ACCESS_KEY="$AWS_SECRET_ACCESS_KEY"
