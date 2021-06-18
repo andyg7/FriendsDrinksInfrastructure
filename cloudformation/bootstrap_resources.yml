@@ -42,6 +42,7 @@ Resources:
         - arn:aws:iam::aws:policy/AmazonEC2FullAccess
         - arn:aws:iam::aws:policy/AmazonS3FullAccess
         - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
+        - arn:aws:iam::aws:policy/AWSCertificateManagerReadOnly
       Policies:
         - PolicyName: EKSFullAccess
           PolicyDocument:
