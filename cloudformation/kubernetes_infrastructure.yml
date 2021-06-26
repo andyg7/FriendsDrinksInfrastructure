@@ -132,8 +132,8 @@ Resources:
       NodeRole: !GetAtt EKSWorkerNodeInstanceRole.Arn
       ScalingConfig:
         MinSize: 3
-        DesiredSize: 5
-        MaxSize: 5
+        DesiredSize: 8
+        MaxSize: 8
       InstanceTypes:
         - 'm5.large'
       Subnets:
